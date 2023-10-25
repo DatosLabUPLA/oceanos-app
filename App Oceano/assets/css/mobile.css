@@ -1,0 +1,153 @@
+header{
+    position: absolute;
+}
+
+.header .logo h1{
+    color: #000000;
+}
+
+
+/*--------------------------------------------------------------
+# Menu
+--------------------------------------------------------------*/
+
+.navbar a{
+    color: rgb(255, 255, 255);
+}
+
+.navbar .active{
+    color: black;
+}
+
+.navbar a:hover,
+  .navbar .active,
+  .navbar .active:focus,
+  .navbar li:hover>a {
+    color: #000000;
+  }
+
+
+/*--------------------------------------------------------------
+# starApp
+--------------------------------------------------------------*/
+
+/*.starapp .go {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+
+.starapp .go p {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 18px;
+  }*/
+
+  /*.searchff{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }*/
+
+  .bodyone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+  }
+
+  .searchff .container-tabs{
+      height: 100%;
+      width: 100%;
+    }
+
+    
+  .searchff .nav{
+    display: flex;
+    width: 100%;
+    background-color: #fcfcfc;
+    position: relative;
+    text-align: center;
+    
+    list-style: none;
+  }
+
+  
+  .searchff .nav .nav-item{
+    flex-grow: 0;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: red;
+    background-color: rgb(240, 246, 246);
+  }
+
+  .nav-tabs .nav-link {
+    color: rgb(0, 0, 0);
+  }
+
+.tab-container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.options{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  list-style: none;
+  margin-left: -10px;
+  
+}
+ 
+.option{
+  flex-grow: 1;
+  text-align: center;
+  width: 150px;
+  border: solid 1px rgba(4, 51, 78, 6);
+  cursor: pointer;
+}
+
+.option-active{
+  background: var(--bg-active);
+  border-bottom: 1px solid rgba(7, 63, 95, 4);
+}
+
+.contents {
+  width: 100%;
+  height: 85%;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  color: aqua;
+  display: none;
+}
+
+.content-active {
+  background: var(--bg-active);
+  display: block;
+}
+
+/*table, th, td{
+  border: 1px solid red;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 10px 30px;
+  margin-left: 64px;
+}/*
+
+
+
+
+
+
+
+
+
+
+
+
