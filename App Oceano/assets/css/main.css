@@ -190,7 +190,7 @@ section {
 
 .scroll-top:hover {
   background: #ffc732;
-  color: #fff;
+  color: #ffffff;
 }
 
 .scroll-top.active {
@@ -501,7 +501,7 @@ section {
 
   .mobile-nav-show {
     position: relative;
-    color: #fff;
+    color: #000000;
     font-size: 28px;
     cursor: pointer;
     line-height: 0;
@@ -1359,7 +1359,7 @@ section {
   border-radius: 4px;
   line-height: 0;
   box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.08);
-  background-color: #fff;
+  background-color: #78c232;
   transition: 0.3s;
 }
 
