@@ -49,15 +49,16 @@ header{
   }*/
 
   .bodyone{
-    display: flex;
+    
     align-items: center;
     justify-content: center;
-    min-height: 50vh;
+  
   }
 
   .searchff .container-tabs{
       height: 100%;
       width: 100%;
+      
     }
 
     
@@ -141,8 +142,15 @@ header{
 }/*
 
 
+/*--------------------------------------------------------------
+# Menu
+--------------------------------------------------------------*/
 
+.searchLitoral .imgLitoral{
+  width: 100%;
+  min-height: 10vh;
 
+}
 
 
 
