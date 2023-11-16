@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide de Texto con Bootstrap y Fondo Negro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            text-align: center;
+        }
+
+        .carousel-item {
+            background-color: #000; /* Fondo negro */
+            color: #fff; /* Texto blanco */
+        }
+
+        .carousel-item h1, .carousel-item p {
+            margin: 0;
+        }
+
+        .d-flex {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="d-flex align-items-center justify-content-center">
+                <h1>Slide 1</h1>
+                <p>Contenido del primer slide.</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="d-flex align-items-center justify-content-center">
+                <h1>Slide 2</h1>
+                <p>Contenido del segundo slide.</p>
+            </div>
+        </div>
+
+        <!-- Agrega más slides según sea necesario -->
+
+    </div>
+
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+    </a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
