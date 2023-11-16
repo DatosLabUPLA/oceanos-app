@@ -60,7 +60,8 @@
       </header><!-- End Header -->
 
     <!-- ======= FLora and Fauna Search ======= -->
-    <section id="searchIndFauna" class="searchIndFauna">
+     <!-- ======= FLora and Fauna Search ======= -->
+     <section id="searchIndFauna" class="searchIndFauna">
         <div class="container-sm">
             <div class="go">
                 <div class="row justify-content-md-center">
@@ -124,20 +125,32 @@
                 return `IMAGENES/${imageName}`; // Ajusta la ruta según la estructura de tu repositorio
             };
 
-            // Función para actualizar el carrusel con la imagen de la API
-            const updateCarouselImage = (imageName) => {
+            // Función para actualizar el carrusel con las imágenes de la API
+            const updateCarouselImages = (imageNames) => {
                 const carouselInner = document.querySelector('.carousel-inner');
                 carouselInner.innerHTML = '';
 
-                const carouselItem = document.createElement('div');
-                carouselItem.classList.add('carousel-item', 'active');
+                if (imageNames && typeof imageNames === 'string') {
+                    const imagesArray = imageNames.split(',');
 
-                const imgElement = document.createElement('img');
-                imgElement.src = buildImageUrl(imageName);
-                imgElement.classList.add('d-block', 'w-100');
+                    imagesArray.forEach((imageName, index) => {
+                        const carouselItem = document.createElement('div');
+                        carouselItem.classList.add('carousel-item');
+                        if (index === 0) {
+                            carouselItem.classList.add('active');
+                        }
 
-                carouselItem.appendChild(imgElement);
-                carouselInner.appendChild(carouselItem);
+                        const imgElement = document.createElement('img');
+                        imgElement.src = buildImageUrl(imageName.trim());
+                        imgElement.classList.add('d-block', 'w-100');
+
+                        carouselItem.appendChild(imgElement);
+                        carouselInner.appendChild(carouselItem);
+                    });
+                } else {
+                    // Handle the case where the 'Imagenes' property is not present or is not a string
+                    console.error('Invalid or missing image data.');
+                }
             };
 
             // Función para mostrar los detalles en la interfaz
@@ -147,8 +160,8 @@
                 document.getElementById('distribucion').innerText = data.Distribucion || 'N/A';
                 document.getElementById('ubicacion').innerText = data.Ubicación || 'N/A';
 
-                // Actualizar el carrusel con la imagen de la API
-                updateCarouselImage(data.Url_Imagen); // Suponemos que Imagenes es un array que contiene solo una imagen
+                // Actualizar el carrusel con las imágenes de la API
+                updateCarouselImages(data.Url_Imagen);
             };
 
             // Obtener detalles del elemento y mostrar en la interfaz
