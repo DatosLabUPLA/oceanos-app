@@ -33,10 +33,31 @@
 </head>
 
 <body class="bodyone d-flex p-5">
-    <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center">
-        <!-- ... (rest of your header code) ... -->
-    </header><!-- End Header -->
+        <div class="container-sm d-flex align-items-center justify-content-between">
+          <div >
+            <a href="mobile.html" class="logo d-flex align-items-center">
+              <!-- Uncomment the line below if you also wish to use an image logo -->
+              <!-- <img src="assets/img/logo.png" alt=""> -->
+              <h1>Litoral<span>Chileno</span></h1>
+            </a>
+          </div>
+          <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+          <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="mobile.html" class="active">Mi Perfil</a></li>
+              <li><a href="#">Buscador de Flora</a></li>
+              <li><a href="#">Buscador de Fauna</a></li>
+              <li><a href="#">Buscador con Ayuda</a></li>
+              <li><a href="litoralSearch.html">Visita el Litoral</a></li>
+              <li><a href="#">Desafios</a></li>
+              <li><a href="#">Sube tu Registro</a></li>
+              <li><a href="#">Contáctanos</a></li>
+            </ul>
+          </nav><!-- .navbar -->
+        </div>
+      </header><!-- End Header -->
 
     <!-- ======= FLora and Fauna Search ======= -->
     <section id="searchIndFauna" class="searchIndFauna">
@@ -103,25 +124,20 @@
                 return `IMAGENES/${imageName}`; // Ajusta la ruta según la estructura de tu repositorio
             };
 
-            // Función para actualizar el carrusel con las imágenes de la API
-            const updateCarouselImages = (images) => {
+            // Función para actualizar el carrusel con la imagen de la API
+            const updateCarouselImage = (imageName) => {
                 const carouselInner = document.querySelector('.carousel-inner');
                 carouselInner.innerHTML = '';
 
-                images.forEach((imageName, index) => {
-                    const carouselItem = document.createElement('div');
-                    carouselItem.classList.add('carousel-item');
-                    if (index === 0) {
-                        carouselItem.classList.add('active');
-                    }
+                const carouselItem = document.createElement('div');
+                carouselItem.classList.add('carousel-item', 'active');
 
-                    const imgElement = document.createElement('img');
-                    imgElement.src = buildImageUrl(imageName);
-                    imgElement.classList.add('d-block', 'w-100');
+                const imgElement = document.createElement('img');
+                imgElement.src = buildImageUrl(imageName);
+                imgElement.classList.add('d-block', 'w-100');
 
-                    carouselItem.appendChild(imgElement);
-                    carouselInner.appendChild(carouselItem);
-                });
+                carouselItem.appendChild(imgElement);
+                carouselInner.appendChild(carouselItem);
             };
 
             // Función para mostrar los detalles en la interfaz
@@ -131,8 +147,8 @@
                 document.getElementById('distribucion').innerText = data.Distribucion || 'N/A';
                 document.getElementById('ubicacion').innerText = data.Ubicación || 'N/A';
 
-                // Actualizar el carrusel con las imágenes de la API
-                updateCarouselImages(data.Imagenes);
+                // Actualizar el carrusel con la imagen de la API
+                updateCarouselImage(data.Url_Imagen); // Suponemos que Imagenes es un array que contiene solo una imagen
             };
 
             // Obtener detalles del elemento y mostrar en la interfaz
