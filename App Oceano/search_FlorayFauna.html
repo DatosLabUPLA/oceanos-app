@@ -49,7 +49,7 @@
         <nav id="navbar" class="navbar">
           <ul>
             <li><a href="mobile.html" class="active">Mi Perfil</a></li>
-            <li><a href="#">Buscador de Flora y Fauna</a></li>
+            <li><a href="search_FlorayFauna.html">Buscador de Flora y Fauna</a></li>
             <li><a href="#">Buscador con Ayuda</a></li>
             <li><a href="litoralSearch.html">Visita el Litoral</a></li>
             <li><a href="#">Desafios</a></li>
@@ -110,62 +110,69 @@
 
     <!-- Script para obtener datos de la API y mostrar en la interfaz -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // URL de la API (reemplázala con la URL correcta)
-        const apiUrl = 'https://oceanos-api.datoslab.cl';
+document.addEventListener('DOMContentLoaded', function () {
+  // URL de la API (reemplázala con la URL correcta)
+  const apiUrl = 'https://oceanos-api.datoslab.cl';
 
-        // Función para obtener datos de la API
-        const fetchData = async (url) => {
-          try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return data;
-          } catch (error) {
-            console.error('Error fetching data:', error);
-          }
-        };
+  // Función para obtener datos de la API
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-        // Función para mostrar datos en la interfaz
-        // Función para mostrar datos en la interfaz
-const renderData = (containerId, data) => {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
+  // Función para mostrar solo la primera imagen de la lista
+  const getFirstImageUrl = (urlList) => {
+    const imageUrls = urlList.split(',');
+    return imageUrls[0].trim();
+  };
 
-  data.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'card sm-12 d-flex';
+  // Función para mostrar datos en la interfaz
+  const renderData = (containerId, data) => {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
 
-    // Agregar un enlace alrededor de cada tarjeta
-    const link = document.createElement('a');
-    link.href = `detalle.html?id=${item.ID}`; // Reemplaza 'ID' con el nombre real de la propiedad en tu API
-    link.appendChild(card);
+    data.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card sm-12 d-flex';
 
-    card.innerHTML = `
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="IMAGENES/${item.Url_Imagen}" class="img-fluid rounded-start w-auto" alt="...">
-        </div>
-        <div class="col-sm-8">
-          <div class="card-body">
-            <p class="card-text">${item.Nombre_Comun}</p>
-            <p class="card-text"><small class="text-body-secondary">${item.Tipo}</small></p>
+      // Agregar un enlace alrededor de cada tarjeta
+      const link = document.createElement('a');
+      link.href = `detalle.html?id=${item.ID}`; // Reemplaza 'ID' con el nombre real de la propiedad en tu API
+      link.appendChild(card);
+
+      const imageUrl = getFirstImageUrl(item.Url_Imagen);
+
+      card.innerHTML = `
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="IMAGENES/${imageUrl}" class="img-fluid rounded-start w-auto" alt="...">
+          </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+              <p class="card-text">${item.Nombre_Comun}</p>
+              <p class="card-text"><small class="text-body-secondary">${item.Tipo}</small></p>
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
 
-    container.appendChild(link);
-  });
-};
+      container.appendChild(link);
+    });
+  };
 
+  // Obtener datos de flora y fauna y mostrar en la interfaz
+  fetchData(apiUrl + '/flora')
+    .then(data => renderData('floraContainer', data));
 
-        // Obtener datos de flora y fauna y mostrar en la interfaz
-        fetchData(apiUrl + '/flora')
-          .then(data => renderData('floraContainer', data));
+  fetchData(apiUrl + '/fauna')
+    .then(data => renderData('faunaContainer', data));
+});
 
-        fetchData(apiUrl + '/fauna')
-          .then(data => renderData('faunaContainer', data));
-      });
     </script>
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
