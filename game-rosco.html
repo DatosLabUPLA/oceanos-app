@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Otras etiquetas del head permanecen igual -->
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" name="viewport">
         <title>App Océano</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
@@ -28,22 +27,21 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/main.css" rel="stylesheet">
         <link href="assets/css/mobile.css" rel="stylesheet">
-
+        
         <!-- ========================  ========================== -->
 
     </head>
 
-    <body class="bodyone d-flex p-5">
+    <body class="bodyone d-flex pt-5">
         <!-- ======= Header ======= -->
         <header id="header" class="header d-flex align-items-center">
-            <div class="container container-xl d-flex align-items-center justify-content-between ">
-                <div>
-                    <a href="index.html" class="logo d-flex align-items-center">
-                        <!-- Uncomment the line below if you also wish to use an image logo -->
-                        <!-- <img src="assets/img/logo.png" alt=""> -->
-                        <h1>Litoral<span>Chileno</span></h1>
-                    </a>
-                </div>
+            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt=""> -->
+                    <h1>Litoral<span>Chileno</span></h1>
+                </a>
+                
                 <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                 <nav id="navbar" class="navbar">
@@ -57,53 +55,19 @@
                         <li><a href="#">Contáctanos</a></li>
                     </ul>
                 </nav><!-- .navbar -->
+
             </div>
         </header><!-- End Header -->
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center pt-5 "><h1>Desafios</h1></div>
-            </div>
-            <div class="row">
-                <div class="text-center pt-5 ">
-                    <a class="" href="game-rosco.html">
-                        <button class="btn btn-danger col-5 " type="submit">Rosco de Palabras</button>
-                    </a>
-                </div>              
-            </div>
-            <div class="row">
-                <div class="text-center pt-5 ">
-                    <a class="" href="game-sopa-de-letras.html">
-                        <button class="btn btn-danger col-5 " type="submit">Sopa de Letras</button>
-                    </a>
-                </div>              
-            </div>
-            <div class="row">
-                <div class="text-center pt-5 ">
-                    <a class="" href="game-relaciona-columnas.html">
-                        <button class="btn btn-danger col-5 " type="submit">Relacionar Columnas</button>
-                    </a>
-                </div>              
-            </div>
-            <div class="row">
-                <div class="text-center pt-5 ">
-                    <a class="" href="game-memorice.html">
-                        <button class="btn btn-danger col-5 " type="submit">Memorice</button>
-                    </a>
-                </div>              
-            </div>
-            <div class="row">
-                <div class="text-center pt-5 ">
-                    <a class="" href="game-crucigrama.html">
-                        <button class="btn btn-danger col-5 " type="submit">Crucigrama</button>
-                    </a>
-                </div>              
-            </div>
+        
+        <div class="juego-educaplay container-fluid text-center mt-5 ">
+            <iframe allow="fullscreen; autoplay;"  frameborder="0" 
+            src="https://es.educaplay.com/juego/17007976-desafio_natural_adivina_la_palabra.html"></iframe>
         </div>
 
-    
         
-    
+
+        
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
@@ -112,8 +76,8 @@
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
-    
+
         <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script>    
     </body>
 </html>
