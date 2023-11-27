@@ -501,7 +501,7 @@ section {
 
   .mobile-nav-show {
     position: relative;
-    color: #000000;
+    color: #ffffff;
     font-size: 28px;
     cursor: pointer;
     line-height: 0;
@@ -509,6 +509,7 @@ section {
     z-index: 9999;
     padding-right: 10px;
   }
+  
 
   .mobile-nav-hide {
     color: #fff;
