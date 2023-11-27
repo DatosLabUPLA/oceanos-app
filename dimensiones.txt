@@ -1,0 +1,4 @@
+Carrusel: 1920 x 1080 ; 1200 x 800 desktop, 716 x 1354 mobile. Se ajustan las distintas resoluciones desde el centro.
+Imagen colaboradores: 400 x 400
+Imagen del Footer: 1920 X 1010
+Imagenes de FLoara y Fauna: 340 x 230

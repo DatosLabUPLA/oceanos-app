@@ -19,9 +19,9 @@
 
 /* Colors */
 :root {
-  --color-default: #364d59;
-  --color-primary: #ff0707;
-  --color-secondary: #52565e;
+  --color-default: #D7B56D;
+  --color-primary: #3FA8B8;
+  --color-secondary: #000000;
 }
 
 /* Smooth scroll behavior */
@@ -34,7 +34,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: var(--font-default);
-  color: var(--color-default);
+  
   overflow-x: hidden;
 }
 
@@ -54,7 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: var(--color-secondary);
 }
 
 /*--------------------------------------------------------------
@@ -721,6 +721,7 @@ section {
   background: #fff;
   position: relative;
   border-radius: 0;
+  color: #D7B56D;
 }
 
 .application .lineMid{
@@ -816,7 +817,7 @@ section {
 
 .testimonials .testimonial-item .quote-icon-left,
 .testimonials .testimonial-item .quote-icon-right {
-  color: #ffd565;
+  color: #3FA8B8;
   font-size: 26px;
   line-height: 0;
 }
@@ -2114,13 +2115,13 @@ section {
   background: var(--color-primary);
   border: 0;
   padding: 10px 30px;
-  color: #000000;
+  color: #ffffff;
   transition: 0.4s;
   border-radius: 4px;
 }
 
 .get-started .php-email-form button[type=submit]:hover {
-  background: rgba(254, 185, 0, 0.8);
+  background: #66C3D0;
 }
 
 @keyframes animate-loading {

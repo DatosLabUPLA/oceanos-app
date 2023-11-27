@@ -162,7 +162,7 @@ header{
 }
 
 .appstar .starMobile .section-headers button[type=submit]{
-  background: black;
+  background:  #D7B56D;
   border: 0;
   padding: 10px 30px;
   color: #ffffff;
@@ -174,9 +174,34 @@ header{
   content: "";
 }
 
-
-
 iframe{
   width: 100%;
   height: 84vh;
+}
+
+.btn-desafio{
+  background: var(--color-primary);
+  border: 0;
+  padding: 10px 30px;
+  color: #ffffff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.buscadoree{
+  background: var(--color-primary);
+  border: 0;
+  padding: 10px 30px;
+  color: #ffffff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.butonsearch{
+  background: var(--color-primary);
+  border: 0;
+  padding: 10px 30px;
+  color: #ffffff;
+  transition: 0.4s;
+  border-radius: 4px;
 }
