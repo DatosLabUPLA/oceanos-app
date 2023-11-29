@@ -23,7 +23,7 @@ header{
   .navbar .active,
   .navbar .active:focus,
   .navbar li:hover>a {
-    color: #000000;
+    color: #fdfdfd;
   }
 
 
