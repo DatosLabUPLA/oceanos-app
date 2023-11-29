@@ -158,8 +158,53 @@
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var form = document.getElementById('search-with-help');
+                var resultContainer = document.getElementById('search-results');
+        
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+        
+                    // Obtener los valores del formulario
+                    var region = document.getElementById('region').value || null;
+                    var comuna = document.getElementById('comuna').value || null;
+                    var habitad = document.getElementById('habitad').value || null;
+                    var forma = document.getElementById('forma').value || null;
+                    var color = document.getElementById('color').value || null;
+                    var extremidades = document.getElementById('extremidades').value || null;
+                    var concha = document.getElementById('concha').value || null;
+                    var desplazamiento = document.getElementById('desplazamiento').value || null;
+        
+                    // Construir la URL de la API con los parámetros de búsqueda
+                    var apiUrl = '/search/?region=' + region + '&comuna=' + comuna + '&habitad=' + habitad + '&forma=' + forma + '&color=' + color + '&extremidades=' + extremidades + '&concha=' + concha + '&desplazamiento=' + desplazamiento;
+        
+                    // Realizar la solicitud a la API
+                    fetch(apiUrl)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            // Verificar si hay resultados
+                            if (data.data.length > 0) {
+                                // Mostrar los resultados en la página
+                                resultContainer.innerHTML = "Resultados: " + JSON.stringify(data);
+                            } else {
+                                // Mostrar un mensaje si no hay resultados
+                                resultContainer.innerHTML = "No se encontraron resultados.";
+                            }
+                        })
+                        .catch(function (error) {
+                            // Mostrar un mensaje de error
+                            resultContainer.innerHTML = "Error al realizar la solicitud a la API: " + error;
+                        });
+                });
+            });
+        </script>
+
     
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
+        <div id="search-results"></div>
     </body>
 </html>
