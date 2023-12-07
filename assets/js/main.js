@@ -210,4 +210,22 @@ document.addEventListener('DOMContentLoaded', () => {
     aos_init();
   });
 
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // Muestra el indicador de carga
+      document.getElementById("loader-wrapper").style.display = "flex";
+      
+      //document.getElementById("loader-wrapper2").style.display = "flex";
+
+      // Espera a que todas las imágenes se carguen
+      window.addEventListener("load", function() {
+          // Oculta el indicador de carga
+          document.getElementById("faunaContainer").style.display = "block";
+          // Muestra el contenido de la página
+          //document.getElementById("floraContainer").style.display = "block";
+          // Muestra el contenido de la página
+          
+      });
+  });
+
 });

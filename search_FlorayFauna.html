@@ -87,13 +87,24 @@
           </div>
           <div class="tab-content" id="myTabContent" >
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="flora-tab" tabindex="0">
-              <div class="container" id="floraContainer">
+              <!--Animación de carga-->
+              <div id="loader-wrapper" class="pt-5 pb-5">
+                <div id="loader"></div>
+              </div>
+              <!--Fin animación de carga-->
+              
+              <div class="container2" id="floraContainer">
               <!-- Contenido de flora se agregará aquí dinámicamente -->
               </div>
             </div>
 
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="fauna-tab" tabindex="0">
-              <div class="container" id="faunaContainer">
+              <!--Animación de carga-->
+              <!--div id="loader-wrapper2" class="pt-5 pb-5">
+                <div id="loader"></div>
+              </div-->
+              <!--Fin animación de carga-->
+              <div class="container2" id="faunaContainer">
                 <!-- Contenido de fauna se agregará aquí dinámicamente -->
               </div>
             </div>
@@ -136,8 +147,12 @@
                 };
                 // Función para mostrar datos en la interfaz
                 const renderData = (containerId, data) => {
-                  const container = document.getElementById(containerId);
-                  container.innerHTML = '';
+                  //Al cargar edsaparece el loader.
+                  document.getElementById("loader-wrapper").style.display = "none";
+                  //document.getElementById("loader-wrapper2").style.display = "none";
+                  
+                  const container2 = document.getElementById(containerId);
+                  container2.innerHTML = '';
 
                   data.forEach(item => {
                     const card = document.createElement('div');
@@ -164,7 +179,7 @@
                     </div>
                   `;
 
-                  container.appendChild(link);
+                  container2.appendChild(link);
                   });
                   };
 
@@ -175,6 +190,7 @@
                   fetchData(apiUrl + '/fauna')
                     .then(data => renderData('faunaContainer', data));
                   });
+                  
 
                   </script>
                   <!-- Vendor JS Files -->
