@@ -2710,6 +2710,63 @@ section {
 }
 
 /*--------------------------------------------------------------
+# creditos
+--------------------------------------------------------------*/
+/*Colores
+#66C3D0
+#008DD2
+#A8D4AF
+#68BDE9
+#A4D8E1
+#D7B56D
+#3FA8B8
+*/
+
+.creditos{
+  background-color: #f5f6f7;
+}
+
+.creditos .info-item h3{
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.creditos .info-item h2{
+  font-size: 30px;
+  color: #6c757d;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.creditos .info-item p {
+  padding: 0;
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.creditos .info-item .img1{
+  padding-top: 40px;
+  width: 75%;
+  height: 75%;
+  
+}
+
+.creditos .info-item .img2{
+  width: 50%;
+  height: 50%;
+}
+
+.creditos .row{
+  padding-left: 10vh;
+  padding-right: 10vh;
+}
+
+
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 .footer {
