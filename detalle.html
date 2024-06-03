@@ -73,17 +73,54 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
+
+                    <div class="text-center">
+                        <p>
+                            <i id="Descripcion_Imagen"></i>
+                        </p>
+                    </div>
+
+                    <br>
+
                     <div class="col-sm-8">
-                        <TABLE BORDER class="table"><br>
-                            <TR><TH>Nombre Científico</TH>
-                                <TD class="table-secondary" id="nombreCientifico"></TD> </TR>
-                            <TR><TH>Nombre Común</TH>
-                                <TD class="table-secondary" id="nombreComun"></TD> </TR>
-                            <TR><TH>Distribución</TH>
-                                <TD class="table-secondary" id="distribucion"></TD></TR>
-                            <TR><TH>Hábitad</TH>
-                                <TD class="table-secondary" id="ubicacion"></TD> </TR>
-                        </TABLE>
+                        <table border class="table"><br>
+                            <tr>
+                                <th>Nombre Científico</th>
+                                <td class="table-secondary" id="nombreCientifico"></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre Común</th>
+                                <td class="table-secondary" id="nombreComun"></td>
+                            </tr>
+                            <tr>
+                                <th>Tipo</th>
+                                <td class="table-secondary" id="tipo"></td>
+                            </tr>
+                            <tr>
+                                <th>Distribución</th>
+                                <td class="table-secondary" id="distribucion"></td>
+                            </tr>
+                            <tr>
+                                <th>Hábitat</th>
+                                <td class="table-secondary" id="habitat"></td>
+                            </tr>
+                            <tr>
+                                <th>Descripción</th>
+                                <td class="table-secondary" id="descripcion"></td>
+                            </tr>
+                            <tr>
+                                <th>Reproducción</th>
+                                <td class="table-secondary" id="reproduccion"></td>
+                            </tr>
+                            <tr>
+                                <th>Alimentación</th>
+                                <td class="table-secondary" id="alimentacion"></td>
+                            </tr>
+                            <tr>
+                                <th>Fuente</th>
+                                <td class="table-secondary" id="fuente"></td>
+                            </tr>
+                        </table>
                     </div>
                     <br>
                 </div>
@@ -147,8 +184,14 @@
             const renderItemDetails = (data) => {
                 document.getElementById('nombreCientifico').innerText = data.Nombre_Cientifico || 'N/A';
                 document.getElementById('nombreComun').innerText = data.Nombre_Comun || 'N/A';
+                document.getElementById('tipo').innerText = data.Tipo || 'N/A';
                 document.getElementById('distribucion').innerText = data.Distribucion || 'N/A';
-                document.getElementById('ubicacion').innerText = data.Ubicación || 'N/A';
+                document.getElementById('habitat').innerText = data.Habitat || 'N/A';
+                document.getElementById('descripcion').innerText = data.Descripcion || 'N/A';
+                document.getElementById('reproduccion').innerText = data.Reproduccion || 'N/A';
+                document.getElementById('alimentacion').innerText = data.Alimentacion || 'N/A';
+                document.getElementById('fuente').innerText = data.Fuente || 'N/A';
+                document.getElementById('Descripcion_Imagen').innerText = data.Descripcion_Imagen || 'N/A';
 
                 // Actualizar el carrusel con las imágenes de la API
                 updateCarouselImages(data.Url_Imagen);
