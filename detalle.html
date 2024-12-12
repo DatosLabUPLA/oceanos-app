@@ -185,7 +185,7 @@
                 document.getElementById('reproduccion').innerText = data.Reproduccion || 'N/A';
                 document.getElementById('alimentacion').innerText = data.Alimentacion || 'N/A';
                 document.getElementById('fuente').innerText = data.Fuente || 'N/A';
-                document.getElementById('Descripcion_Imagen').innerText = data.Descripcion_Imagen || 'N/A';
+                document.getElementById('Descripcion_Imagen').innerText = (data.Fotografo ? `Fotografía: ${data.Fotografo}` : 'N/A');
 
                 // Actualizar el carrusel con las imágenes de la API
                 updateCarouselImages(data.Url_Imagen);
