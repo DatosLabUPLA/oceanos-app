@@ -27,6 +27,38 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/main.css" rel="stylesheet">
         <link href="assets/css/mobile.css" rel="stylesheet">
+        
+        <style>
+            /* Custom styles for search results */
+            .species-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                cursor: pointer;
+                height: 100%;
+            }
+            .species-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .species-card .card-img-top {
+                height: 200px;
+                object-fit: cover;
+            }
+            .species-card-link {
+                text-decoration: none;
+                color: inherit;
+            }
+            .species-card-link:hover {
+                text-decoration: none;
+            }
+            #search-results {
+                margin-top: 20px;
+            }
+            @media (max-width: 768px) {
+                .species-card {
+                    margin-bottom: 15px;
+                }
+            }
+        </style>
     </head>
 
     <body class="bodyone d-flex p-5">
@@ -60,24 +92,33 @@
             </div>
             
             <form id="search-with-help">
+                <!-- Categoría -->
                 <div class="row mb-3">
                     <div class="col-4">
                         <label for="categoria" class="form-label">Categoría</label>
                     </div>
                     <div class="col-8">
-                        <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoría">
+                        <select class="form-control" id="categoria" name="categoria">
+                            <option value="">Seleccione una categoría</option>
+                            <!-- Opciones dinámicas agregadas por JavaScript -->
+                        </select>
                     </div>
                 </div>
-
+        
+                <!-- Tipo -->
                 <div class="row mb-3">
                     <div class="col-4">
                         <label for="tipo" class="form-label">Tipo</label>
                     </div>
                     <div class="col-8">
-                        <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo">
+                        <select class="form-control" id="tipo" name="tipo">
+                            <option value="">Seleccione un tipo</option>
+                            <!-- Opciones dinámicas agregadas por JavaScript -->
+                        </select>
                     </div>
                 </div>
-
+        
+                <!-- Nombre Común -->
                 <div class="row mb-3">
                     <div class="col-4">
                         <label for="nombre_comun" class="form-label">Nombre Común</label>
@@ -86,7 +127,8 @@
                         <input type="text" class="form-control" id="nombre_comun" name="nombre_comun" placeholder="Nombre Común">
                     </div>
                 </div>
-
+        
+                <!-- Nombre Científico -->
                 <div class="row mb-3">
                     <div class="col-4">
                         <label for="nombre_cientifico" class="form-label">Nombre Científico</label>
@@ -95,14 +137,17 @@
                         <input type="text" class="form-control" id="nombre_cientifico" name="nombre_cientifico" placeholder="Nombre Científico">
                     </div>
                 </div>
-
+        
+                <!-- Botón de búsqueda -->
                 <div class="text-center pt-5">
                     <button type="submit" class="butonsearch btn col-10">Ver resultados</button>
                 </div>
             </form>
-
+        
+            <!-- Contenedor de resultados -->
             <div id="search-results" class="mt-4"></div>
         </div>
+        
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -126,88 +171,126 @@
             }
 
             document.addEventListener('DOMContentLoaded', function () {
+                const categoriaSelect = document.getElementById('categoria');
+                const tipoSelect = document.getElementById('tipo');
+
+                // Fetch available filters from the API
+                fetch('https://oceanos-api.datoslab.cl/filters/', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Populate "Categoría" options
+                    if (data.categorias && Array.isArray(data.categorias)) {
+                        data.categorias.forEach(categoria => {
+                            const option = document.createElement('option');
+                            option.value = categoria;
+                            option.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1); // Capitalize
+                            categoriaSelect.appendChild(option);
+                        });
+                    }
+
+                    // Populate "Tipo" options
+                    if (data.tipos && Array.isArray(data.tipos)) {
+                        data.tipos.forEach(tipo => {
+                            const option = document.createElement('option');
+                            option.value = tipo;
+                            option.textContent = tipo.charAt(0).toUpperCase() + tipo.slice(1); // Capitalize
+                            tipoSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching filters:', error);
+                });
+
+                // Existing form submission logic
                 const form = document.getElementById('search-with-help');
                 const resultContainer = document.getElementById('search-results');
 
                 form.addEventListener('submit', function (event) {
                     event.preventDefault();
 
-                    // Collect search parameters
                     const searchParams = {};
-                    ['categoria', 'tipo', 'nombre_comun', 'nombre_cientifico']
-                        .forEach(function(field) {
-                            const value = document.getElementById(field).value.trim();
-                            if (value) {
-                                searchParams[field] = normalizeText(value);
-                            }
-                        });
+                    ['categoria', 'tipo', 'nombre_comun', 'nombre_cientifico'].forEach(function (field) {
+                        const value = document.getElementById(field).value.trim();
+                        if (value) {
+                            searchParams[field] = value;
+                        }
+                    });
 
-                    // If no search parameters, show an error
                     if (Object.keys(searchParams).length === 0) {
                         resultContainer.innerHTML = '<div class="alert alert-warning">Por favor, ingrese al menos un criterio de búsqueda.</div>';
                         return;
                     }
 
-                    // Construct the search query
                     const queryString = Object.keys(searchParams)
                         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(searchParams[key])}`)
                         .join('&');
 
-                    // Show loading indicator
                     resultContainer.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="sr-only">Cargando...</span></div></div>';
 
-                    // Perform the API request
-                    fetch(`https://your-api-domain.com/search/?${queryString}`, {
+                    fetch(`https://oceanos-api.datoslab.cl/search/?${queryString}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         }
                     })
-                    .then(function (response) {
+                    .then(response => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
                         return response.json();
                     })
-                    .then(function (data) {
-                        // Check if there are results
+                    .then(data => {
                         if (data.length > 0) {
-                            // Create a more detailed display of results
                             let resultsHTML = '<h2>Resultados de la búsqueda:</h2>';
                             resultsHTML += '<div class="row">';
-                            
-                            data.forEach(function(item) {
+
+                            data.forEach(item => {
                                 resultsHTML += `
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${escapeHTML(item.nombre_comun) || 'Sin nombre común'}</h5>
-                                                <h6 class="card-subtitle mb-2 text-muted">${escapeHTML(item.nombre_cientifico) || 'Sin nombre científico'}</h6>
-                                                <p class="card-text">
-                                                    <strong>Categoría:</strong> ${escapeHTML(item.categoria) || 'No especificada'}<br>
-                                                    <strong>Tipo:</strong> ${escapeHTML(item.tipo) || 'No especificado'}
-                                                </p>
+                                    <div class="col-md-4 mb-4">
+                                        <a href="detalle.html?id=${escapeHTML(item.ID)}" class="species-card-link">
+                                            <div class="card species-card">
+                                                <img src="IMAGENES/${escapeHTML(item.Url_Imagen)}" 
+                                                    class="card-img-top" 
+                                                    alt="${escapeHTML(item.Nombre_Comun)}"
+                                                    onerror="this.src='assets/img/placeholder-image.png';">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${escapeHTML(item.Nombre_Comun) || 'Sin nombre común'}</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">${escapeHTML(item.Nombre_Cientifico) || 'Sin nombre científico'}</h6>
+                                                    <p class="card-text">
+                                                        <strong>Categoría:</strong> ${escapeHTML(item.Categoría) || 'No especificada'}<br>
+                                                        <strong>Tipo:</strong> ${escapeHTML(item.Tipo) || 'No especificado'}
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 `;
                             });
-                            
+
                             resultsHTML += '</div>';
                             resultContainer.innerHTML = resultsHTML;
                         } else {
-                            // Show message if no results found
                             resultContainer.innerHTML = '<div class="alert alert-info">No se encontraron resultados.</div>';
                         }
                     })
-                    .catch(function (error) {
-                        // Show error message
+                    .catch(error => {
                         resultContainer.innerHTML = `<div class="alert alert-danger">Error al realizar la solicitud: ${error.message}</div>`;
                     });
                 });
 
-                // Utility function to escape HTML to prevent XSS
                 function escapeHTML(str) {
                     if (!str) return '';
                     return str.toString()
