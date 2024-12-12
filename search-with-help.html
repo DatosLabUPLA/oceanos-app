@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -116,84 +116,107 @@
         <script>
             // Utility function to remove accents and normalize text
             function normalizeText(text) {
-                return text.toLowerCase()
+                // Check if text is null or undefined
+                if (!text) return '';
+                
+                return text.toString().toLowerCase()
                     .trim()
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '');
             }
 
             document.addEventListener('DOMContentLoaded', function () {
-                var form = document.getElementById('search-with-help');
-                var resultContainer = document.getElementById('search-results');
-        
+                const form = document.getElementById('search-with-help');
+                const resultContainer = document.getElementById('search-results');
+
                 form.addEventListener('submit', function (event) {
                     event.preventDefault();
-        
+
                     // Collect search parameters
-                    var searchParams = {};
+                    const searchParams = {};
                     ['categoria', 'tipo', 'nombre_comun', 'nombre_cientifico']
                         .forEach(function(field) {
-                            var value = document.getElementById(field).value.trim();
+                            const value = document.getElementById(field).value.trim();
                             if (value) {
                                 searchParams[field] = normalizeText(value);
                             }
                         });
-        
+
                     // If no search parameters, show an error
                     if (Object.keys(searchParams).length === 0) {
                         resultContainer.innerHTML = '<div class="alert alert-warning">Por favor, ingrese al menos un criterio de búsqueda.</div>';
                         return;
                     }
-        
+
                     // Construct the search query
-                    var queryString = Object.keys(searchParams)
+                    const queryString = Object.keys(searchParams)
                         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(searchParams[key])}`)
                         .join('&');
-        
+
+                    // Show loading indicator
+                    resultContainer.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="sr-only">Cargando...</span></div></div>';
+
                     // Perform the API request
-                    fetch(`/search/?${queryString}`)
-                        .then(function (response) {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            // Check if there are results
-                            if (data.length > 0) {
-                                // Create a more detailed display of results
-                                var resultsHTML = '<h2>Resultados de la búsqueda:</h2>';
-                                resultsHTML += '<div class="row">';
-                                
-                                data.forEach(function(item) {
-                                    resultsHTML += `
-                                        <div class="col-md-4 mb-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${item.nombre_comun || 'Sin nombre común'}</h5>
-                                                    <h6 class="card-subtitle mb-2 text-muted">${item.nombre_cientifico || 'Sin nombre científico'}</h6>
-                                                    <p class="card-text">
-                                                        <strong>Categoría:</strong> ${item.categoria || 'No especificada'}<br>
-                                                        <strong>Tipo:</strong> ${item.tipo || 'No especificado'}
-                                                    </p>
-                                                </div>
+                    fetch(`https://your-api-domain.com/search/?${queryString}`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        // Check if there are results
+                        if (data.length > 0) {
+                            // Create a more detailed display of results
+                            let resultsHTML = '<h2>Resultados de la búsqueda:</h2>';
+                            resultsHTML += '<div class="row">';
+                            
+                            data.forEach(function(item) {
+                                resultsHTML += `
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${escapeHTML(item.nombre_comun) || 'Sin nombre común'}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">${escapeHTML(item.nombre_cientifico) || 'Sin nombre científico'}</h6>
+                                                <p class="card-text">
+                                                    <strong>Categoría:</strong> ${escapeHTML(item.categoria) || 'No especificada'}<br>
+                                                    <strong>Tipo:</strong> ${escapeHTML(item.tipo) || 'No especificado'}
+                                                </p>
                                             </div>
                                         </div>
-                                    `;
-                                });
-                                
-                                resultsHTML += '</div>';
-                                resultContainer.innerHTML = resultsHTML;
-                            } else {
-                                // Show message if no results found
-                                resultContainer.innerHTML = '<div class="alert alert-info">No se encontraron resultados.</div>';
-                            }
-                        })
-                        .catch(function (error) {
-                            // Show error message
-                            resultContainer.innerHTML = '<div class="alert alert-danger">Error al realizar la solicitud: ' + error.message + '</div>';
-                        });
+                                    </div>
+                                `;
+                            });
+                            
+                            resultsHTML += '</div>';
+                            resultContainer.innerHTML = resultsHTML;
+                        } else {
+                            // Show message if no results found
+                            resultContainer.innerHTML = '<div class="alert alert-info">No se encontraron resultados.</div>';
+                        }
+                    })
+                    .catch(function (error) {
+                        // Show error message
+                        resultContainer.innerHTML = `<div class="alert alert-danger">Error al realizar la solicitud: ${error.message}</div>`;
+                    });
                 });
+
+                // Utility function to escape HTML to prevent XSS
+                function escapeHTML(str) {
+                    if (!str) return '';
+                    return str.toString()
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;')
+                        .replace(/"/g, '&quot;')
+                        .replace(/'/g, '&#039;');
+                }
             });
         </script>
     
