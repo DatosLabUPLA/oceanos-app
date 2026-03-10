@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Página de detalle: muestra información e imágenes de un ítem de Flora/Fauna -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" name="viewport">
     <title>App Océano</title>
@@ -11,7 +12,7 @@
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -24,20 +25,19 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
+    <!-- CSS principal de la plantilla -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/mobile.css" rel="stylesheet">
 
-    <!-- ========================  ========================== -->
-
+    <!-- Nota: estilos específicos deben ir en los CSS del proyecto -->
 </head>
 
 <body class="bodyone d-flex p-5">
+    <!-- Encabezado del sitio con navegación -->
     <header id="header" class="header d-flex align-items-center">
         <div class="container-sm d-flex align-items-center justify-content-between">
           <div >
             <a href="mobile.html" class="logo d-flex align-items-center">
-              <!-- Uncomment the line below if you also wish to use an image logo -->
               <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Logo app oceanos">
             </a>
           </div>
@@ -55,12 +55,12 @@
         </div>
       </header><!-- End Header -->
 
-    <!-- ======= FLora and Fauna Search ======= -->
-     <!-- ======= FLora and Fauna Search ======= -->
+     <!-- Detalle de elemento: carrusel + tabla de atributos -->
      <section id="searchIndFauna" class="searchIndFauna pt-5 ">
         <div class="container-sm">
             <div class="go">
                 <div class="row justify-content-md-center">
+                    <!-- Carrusel de imágenes del elemento -->
                     <div id="carouselExample" class="carousel slide col-sm-8">
                         <div class="carousel-inner"></div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -73,6 +73,7 @@
                         </button>
                     </div>
 
+                    <!-- Descripción corta asociada a las imágenes -->
                     <div class="text-center">
                         <p>
                             <i id="Descripcion_Imagen"></i>
@@ -81,6 +82,7 @@
 
                     <br>
 
+                    <!-- Tabla con metadatos principales del elemento -->
                     <div class="col-sm-8">
                         <table border class="table"><br>
                             <tr>
@@ -124,14 +126,14 @@
     </section>
     <!-- End starapp Section -->
 
-    <!-- Vendor JS Files -->
+    <!-- Lógica de detalle: obtiene datos por ID desde la API y renderiza en la vista -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const apiUrl = 'https://oceanos-api.datoslab.cl';
             const urlParams = new URLSearchParams(window.location.search);
             const itemId = urlParams.get('id');
 
-            // Función para obtener detalles de un elemento por ID
+            // Obtiene detalles de un elemento por ID
             const fetchItemDetails = async (id) => {
                 try {
                     const response = await fetch(`${apiUrl}/datos/${id}`);
@@ -142,12 +144,12 @@
                 }
             };
 
-            // Función para construir la URL de la imagen
+            // Construye la URL local de la imagen a partir del nombre entregado por la API
             const buildImageUrl = (imageName) => {
                 return `IMAGENES/${imageName}`; // Ajusta la ruta según la estructura de tu repositorio
             };
 
-            // Función para actualizar el carrusel con las imágenes de la API
+            // Llena el carrusel con las imágenes entregadas por la API
             const updateCarouselImages = (imageNames) => {
                 const carouselInner = document.querySelector('.carousel-inner');
                 carouselInner.innerHTML = '';
@@ -170,12 +172,11 @@
                         carouselInner.appendChild(carouselItem);
                     });
                 } else {
-                    // Handle the case where the 'Imagenes' property is not present or is not a string
-                    console.error('Invalid or missing image data.');
+                    console.error('Datos de imagen inválidos o ausentes.');
                 }
             };
 
-            // Función para mostrar los detalles en la interfaz
+            // Renderiza los detalles del elemento en la tabla y el carrusel
             const renderItemDetails = (data) => {
                 document.getElementById('nombreCientifico').innerText = data.Nombre_Cientifico || 'N/A';
                 document.getElementById('nombreComun').innerText = data.Nombre_Comun || 'N/A';
@@ -191,11 +192,12 @@
                 updateCarouselImages(data.Url_Imagen);
             };
 
-            // Obtener detalles del elemento y mostrar en la interfaz
+            // Flujo principal: obtener el detalle y renderizar
             fetchItemDetails(itemId)
                 .then(data => renderItemDetails(data));
         });
     </script>
+    <!-- JS de vendors de la plantilla -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -204,7 +206,7 @@
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
+    <!-- JS principal de la plantilla -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>

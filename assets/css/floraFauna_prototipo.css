@@ -1,0 +1,66 @@
+/* Prototipo UI for Flora & Fauna */
+:root { --brand: #007bff; --text: #212529; }
+
+.page-title { font-weight: 700; margin: 0; }
+.page-subtitle { color: #6c757d; margin-bottom: .25rem; }
+
+.prototype-tabs .nav-link { font-weight: 600; color: var(--text); border: 1px solid #dee2e6; }
+.prototype-tabs .nav-link:hover { color: #0a58ca; }
+.prototype-tabs .nav-link.active { background-color: var(--brand); color: #fff; border-color: var(--brand); }
+
+.search-box { min-width: 240px; }
+.toolbar { backdrop-filter: saturate(150%) blur(4px); z-index: 100; }
+
+/* Grid util (5 cols on lg) */
+.five-cols { display: flex; flex-wrap: wrap; gap: 1rem; }
+.five-cols > .five-col { flex: 0 0 100%; }
+@media (min-width:576px){ .five-cols > .five-col{ flex:0 0 calc(50% - .5rem); max-width: calc(50% - .5rem);} }
+@media (min-width:768px){ .five-cols > .five-col{ flex:0 0 calc(33.333% - .67rem); max-width: calc(33.333% - .67rem);} }
+@media (min-width:992px){ .five-cols > .five-col{ flex:0 0 calc(20% - .8rem); max-width: calc(20% - .8rem);} }
+.five-cols.few-items { justify-content: center; }
+@media (min-width:992px){ .five-cols.few-items > .five-col{ flex:0 0 calc(50% - .6rem); max-width: calc(50% - .6rem);} }
+
+/* Modern card */
+.card-modern { border: none; border-radius: .75rem; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.08); transition: transform .2s ease, box-shadow .2s ease; }
+.card-modern:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+.media-wrap { position: relative; width: 100%; padding-top: 66.66%; overflow: hidden; border-top-left-radius: .75rem; border-top-right-radius: .75rem; }
+.media-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card-title { font-weight: 600; }
+.card-body, .card-text { font-weight: 400; }
+.badge-type { margin-top: .25rem; font-weight: 400; }
+
+/* Line clamp for titles */
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Quick view overlay button */
+.quick-wrap { position: absolute; top: .5rem; right: .5rem; z-index: 2; }
+.quick-btn { backdrop-filter: blur(2px); }
+
+/* Utility for modal image */
+.object-fit-cover { object-fit: cover; }
+
+/* Overlay & icons */
+.media-overlay { position:absolute; inset:0; background: linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,0)); opacity:0; transition: opacity .2s ease; }
+.card-modern:hover .media-overlay { opacity: 1; }
+.icon-badge { display:inline-flex; align-items:center; gap:.25rem; }
+
+/* Skeletons */
+.skeleton { border-radius: .75rem; background: linear-gradient(90deg, #eee 25%, #f5f5f5 37%, #eee 63%); background-size: 400% 100%; animation: shimmer 1.4s ease infinite; }
+.skel-card { height: 220px; }
+@keyframes shimmer { 0%{background-position: 200% 0;} 100%{background-position: -200% 0;} }
+
+/* Pagination tweaks */
+.pagination .page-link{ border-radius:.5rem; }
+
+/* Quick details table: justified text */
+.quick-details th { white-space: nowrap; width: 1%; color: #495057; }
+.quick-details td { text-align: justify; }
+
+/* Quick thumbnails */
+.quick-thumbs img { width: 56px; height: 56px; object-fit: cover; border-radius: .5rem; cursor: pointer; opacity: .9; transition: outline-color .2s ease, opacity .2s ease; outline: 2px solid transparent; }
+.quick-thumbs img:hover { opacity: 1; box-shadow: 0 0 0 2px rgba(0,123,255,0.25); }
+.quick-thumbs img.active { outline-color: var(--brand); opacity: 1; }
+
+/* Header spacing and logo sizing to avoid overlap with page title */
+.header .logo img { max-height: 44px; height: auto; }
+.header + main { margin-top: .75rem; }

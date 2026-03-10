@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Otras etiquetas del head permanecen igual -->
+    <!-- Página de búsqueda Flora y Fauna: tabs, grillas y paginación -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>App Océano</title>
@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
+    <!-- CSS de vendors (Bootstrap, iconos, efectos) -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -25,48 +25,19 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
+    <!-- CSS principal de la plantilla -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/mobile.css" rel="stylesheet">
-    
-    <!-- ========================  ========================== -->
-
-    <style>
-      .custom-nav-tabs .nav-link {
-  font-size: 1.25rem; /* Aumenta el tamaño del texto */
-  font-weight: bold;
-  background-color: #f8f9fa; /* Color de fondo para las pestañas */
-  color: #007bff; /* Color del texto */
-  border: 1px solid #dee2e6;
-  border-radius: .25rem .25rem 0 0;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.custom-nav-tabs .nav-link.active {
-  background-color: #007bff; /* Color de fondo cuando está activa */
-  color: #fff; /* Color del texto cuando está activa */
-}
-
-.custom-nav-tabs .nav-link:hover {
-  background-color: #e9ecef; /* Color de fondo cuando se pasa el ratón */
-  color: #0056b3; /* Color del texto cuando se pasa el ratón */
-}
-
-.custom-nav-tabs .nav-item {
-  margin-bottom: -1px; /* Asegura que el borde inferior de la pestaña activa esté alineado */
-}
-
-    </style>
 
   </head>
   <body class="bodyone d-flex p-5">
     
-    <!-- ======= Header ======= -->
+    <!-- Encabezado del sitio: logo y navegación -->
     <header id="header" class="header d-flex align-items-center">
       <div class="container-sm d-flex align-items-center justify-content-between">
         <div >
           <a href="index.html" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- Logo del proyecto -->
             <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Logo app oceanos">
           </a>
         </div>
@@ -76,6 +47,7 @@
           <ul>
             <li><a href="mobile.html">Inicio</a></li>
             <li><a href="search_FlorayFauna.html" class="active">Flora y Fauna</a></li>
+            <li><a href="search_FloraFauna_prototipo.html">Prototipo</a></li>
             <li><a href="search-with-help.html">Buscador</a></li>
             <li><a href="desafios.html">Desafíos</a></li>
             <li><a href="index.html#contact">Contáctanos</a></li>
@@ -85,12 +57,9 @@
       </div>
     </header><!-- End Header -->
 
-    <!-- ======= FLora and Fauna Search ======= -->
-
-    <!-- Sección de búsqueda de Flora y Fauna -->
+    <!-- Sección principal: tabs Flora/Fauna y sus contenidos -->
     <section id="searchff" class="searchff">
       <div class="container pt-4 ">
-        <!-- Resto del código permanece igual -->
         <div class="go">
           <div class="row" >
               <div class="col-12 ">
@@ -100,6 +69,7 @@
             
           <div>
             <div class="container-tabs">
+              <!-- Tabs de navegación entre Flora y Fauna -->
               <ul class="nav nav-tabs custom-nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active custom-tab-button" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="flora-tab-pane" aria-selected="true">Flora</button>
@@ -110,32 +80,42 @@
               </ul>              
             </div>
           </div>
+          <!-- Contenido de cada tab -->
           <div class="tab-content" id="myTabContent" >
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="flora-tab" tabindex="0">
-              <!--Animación de carga-->
+              <!-- Animación de carga (Flora) -->
               <div id="loader-wrapper" class="pt-5 pb-5">
                 <div id="loader"></div>
               </div>
-              <!--Fin animación de carga-->
+              <!-- Fin animación de carga -->
               
-              <div class="container2" id="floraContainer">
+              <div class="container2 five-cols" id="floraContainer">
               <!-- Contenido de flora se agregará aquí dinámicamente -->
               </div>
             </div>
 
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="fauna-tab" tabindex="0">
-              <!--Animación de carga-->
-              <!--div id="loader-wrapper2" class="pt-5 pb-5">
-                <div id="loader"></div>
-              </div-->
-              <!--Fin animación de carga-->
-              <div class="container2" id="faunaContainer">
+              <!-- Animación de carga (Fauna) - actualmente no usada -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="items-toolbar">
+                  <span>Mostrar por página:</span>
+                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow10">10</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow20">20</button>
+                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow30">30</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" id="faunaShowAll">Todos</button>
+                </div>
+              </div>
+              <div class="container2 five-cols" id="faunaContainer">
                 <!-- Contenido de fauna se agregará aquí dinámicamente -->
               </div>
+              <nav aria-label="Paginación Fauna" class="mt-3">
+                <ul class="pagination justify-content-center" id="faunaPagination"></ul>
+              </nav>
             </div>
 
             <br>
 
+            <!-- CTA para ir a la misma sección (posible link promocional) -->
             <div class="row">
               <div class="col-12 text text-center ">
                 <a class=" btn-started" href="search_FlorayFauna.html">
@@ -147,78 +127,230 @@
       </div>
     </section>
 
-    <!-- Resto del código permanece igual -->
-
-    <!-- Script para obtener datos de la API y mostrar en la interfaz -->
+    <!-- Lógica de página: consume API y renderiza grillas/paginación -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        // URL de la API (reemplázala con la URL correcta)
         const apiUrl = 'https://oceanos-api.datoslab.cl';
 
-        // Función para obtener datos de la API
+        // Helper: obtiene JSON desde la API (maneja error devolviendo array vacío)
         const fetchData = async (url) => {
           try {
             const response = await fetch(url);
             const data = await response.json();
             return data;
-            } catch (error) {
-              console.error('Error fetching data:', error);
-              }
-              };
-              // Función para mostrar solo la primera imagen de la lista
-              const getFirstImageUrl = (urlList) => {
-                const imageUrls = urlList.split(',');
-                return imageUrls[0].trim();
-                };
-                // Función para mostrar datos en la interfaz
-                const renderData = (containerId, data) => {
-                  //Al cargar edsaparece el loader.
-                  document.getElementById("loader-wrapper").style.display = "none";
-                  //document.getElementById("loader-wrapper2").style.display = "none";
-                  
-                  const container2 = document.getElementById(containerId);
-                  container2.innerHTML = '';
+          } catch (error) {
+            console.error('Error fetching data:', error);
+            return [];
+          }
+        };
 
-                  data.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'card sm-12 d-flex';
+        // Helper: extrae la primera imagen de una lista separada por comas
+        const getFirstImageUrl = (urlList) => {
+          if (!urlList) return '';
+          const imageUrls = String(urlList).split(',');
+          return (imageUrls[0] || '').trim();
+        };
 
-                    // Agregar un enlace alrededor de cada tarjeta
-                    const link = document.createElement('a');
-                    link.href = `detalle.html?id=${item.ID}`; // Reemplaza 'ID' con el nombre real de la propiedad en tu API
-                    link.appendChild(card);
+        // Render de Flora: grilla sin paginación; centra y amplía si hay pocos ítems
+        const renderFlora = (data) => {
+          const loader = document.getElementById('loader-wrapper');
+          if (loader) loader.style.display = 'none';
 
-                    const imageUrl = getFirstImageUrl(item.Url_Imagen);
+          const container = document.getElementById('floraContainer');
+          container.innerHTML = '';
+          // Centrar y ampliar si hay 1-2 items
+          if (Array.isArray(data) && data.length > 0 && data.length <= 2) {
+            container.classList.add('few-items');
+          } else {
+            container.classList.remove('few-items');
+          }
+          data.forEach((item) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'five-col';
 
-                    card.innerHTML = `
-                    <div class="row">
-                      <div class="col-sm-4">
-                        <img src="IMAGENES/${imageUrl}" class="img-fluid rounded-start w-auto" alt="...">
-                      </div>
-                      <div class="col-sm-8">
-                        <div class="card-body">
-                          <p class="card-text">${item.Nombre_Comun}</p>
-                          <p class="card-text"><small class="text-body-secondary">${item.Tipo}</small></p>
-                        </div>
-                      </div>
-                    </div>
-                  `;
+            const link = document.createElement('a');
+            link.href = `detalle.html?id=${item.ID}`;
+            link.className = 'text-decoration-none';
 
-                  container2.appendChild(link);
-                  });
-                  };
+            const card = document.createElement('div');
+            card.className = 'card card-modern h-100';
 
-                  // Obtener datos de flora y fauna y mostrar en la interfaz
-                  fetchData(apiUrl + '/flora')
-                    .then(data => renderData('floraContainer', data));
+            const imageUrl = getFirstImageUrl(item.Url_Imagen);
+            card.innerHTML = `
+              <div class="media-wrap">
+                <img src="IMAGENES/${imageUrl}" alt="${item.Nombre_Comun || 'Imagen'}" loading="lazy" onerror="this.onerror=null;this.src='assets/img/placeholder.png';">
+              </div>
+              <div class="card-body">
+                <h6 class="card-title mb-1">${item.Nombre_Comun || ''}</h6>
+                <span class="badge rounded-pill text-bg-light badge-type">${item.Tipo || ''}</span>
+              </div>
+            `;
 
-                  fetchData(apiUrl + '/fauna')
-                    .then(data => renderData('faunaContainer', data));
-                  });
-                  
+            link.appendChild(card);
+            wrap.appendChild(link);
+            container.appendChild(wrap);
+          });
+        };
 
-                  </script>
-                  <!-- Vendor JS Files -->
+        // Estado y referencias para Fauna (grilla con paginación)
+        let faunaData = [];
+        let faunaPage = 1;
+        let faunaPerPage = 10; // por defecto 10
+
+        const faunaContainer = document.getElementById('faunaContainer');
+        const faunaPagination = document.getElementById('faunaPagination');
+        const btn10 = document.getElementById('faunaShow10');
+        const btn20 = document.getElementById('faunaShow20');
+        const btn30 = document.getElementById('faunaShow30');
+        const btnAll = document.getElementById('faunaShowAll');
+
+        // Renderiza la grilla de Fauna para la página actual
+        const renderFaunaGrid = (items) => {
+          faunaContainer.innerHTML = '';
+          items.forEach((item) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'five-col';
+
+            const link = document.createElement('a');
+            link.href = `detalle.html?id=${item.ID}`;
+            link.className = 'text-decoration-none';
+
+            const card = document.createElement('div');
+            card.className = 'card h-100';
+
+            const imageUrl = getFirstImageUrl(item.Url_Imagen);
+            card.innerHTML = `
+              <img src="IMAGENES/${imageUrl}" class="card-img-top" alt="${item.Nombre_Comun || 'Imagen'}" loading="lazy" onerror="this.onerror=null;this.src='assets/img/placeholder.png';">
+              <div class="card-body">
+                <h6 class="card-title mb-1">${item.Nombre_Comun || ''}</h6>
+                <p class="card-text"><small class="text-body-secondary">${item.Tipo || ''}</small></p>
+              </div>
+            `;
+
+            link.appendChild(card);
+            wrap.appendChild(link);
+            faunaContainer.appendChild(wrap);
+          });
+        };
+
+        // Construye la paginación de Fauna (ventana de 5 páginas)
+        const renderFaunaPagination = () => {
+          const total = faunaData.length;
+          const perPage = Math.min(faunaPerPage, total) || total;
+          const totalPages = Math.max(1, Math.ceil(total / perPage));
+          faunaPagination.innerHTML = '';
+          // Si se muestran todos, ocultar paginación
+          if (perPage >= total) {
+            faunaPagination.style.display = 'none';
+            return;
+          } else {
+            faunaPagination.style.display = '';
+          }
+
+          const createItem = (label, page, disabled = false, active = false) => {
+            const li = document.createElement('li');
+            li.className = `page-item${disabled ? ' disabled' : ''}${active ? ' active' : ''}`;
+            const a = document.createElement('a');
+            a.className = 'page-link';
+            a.href = '#';
+            a.textContent = label;
+            if (!disabled) {
+              a.addEventListener('click', (e) => {
+                e.preventDefault();
+                faunaPage = page;
+                renderFaunaPage();
+              });
+            }
+            li.appendChild(a);
+            return li;
+          };
+
+          faunaPagination.appendChild(createItem('«', Math.max(1, faunaPage - 1), faunaPage === 1));
+          const windowSize = 5;
+          const start = Math.max(1, faunaPage - Math.floor(windowSize / 2));
+          const end = Math.min(totalPages, start + windowSize - 1);
+          for (let p = start; p <= end; p++) {
+            faunaPagination.appendChild(createItem(String(p), p, false, p === faunaPage));
+          }
+          faunaPagination.appendChild(createItem('»', Math.min(totalPages, faunaPage + 1), faunaPage === totalPages));
+        };
+
+        // Aplica slicing según página/tamaño y renderiza grilla + paginación
+        const renderFaunaPage = () => {
+          const loader = document.getElementById('loader-wrapper');
+          if (loader) loader.style.display = 'none';
+
+          const perPage = Math.min(faunaPerPage, faunaData.length) || faunaData.length;
+          const start = (faunaPage - 1) * perPage;
+          const slice = faunaData.slice(start, start + perPage);
+          renderFaunaGrid(slice);
+          renderFaunaPagination();
+        };
+
+        // Botones para cambiar tamaño de página
+        const updateFaunaButtons = () => {
+          const setBtn = (btn, active, outlineClass = 'btn-outline-primary', activeClass = 'btn-primary') => {
+            if (!btn) return;
+            btn.classList.toggle('active', active);
+            btn.classList.toggle(activeClass, active);
+            btn.classList.toggle(outlineClass, !active);
+          };
+          setBtn(btn10, faunaPerPage === 10);
+          setBtn(btn20, faunaPerPage === 20);
+          setBtn(btn30, faunaPerPage === 30);
+          if (btnAll) {
+            btnAll.classList.toggle('active', faunaPerPage === Infinity);
+            btnAll.classList.toggle('btn-secondary', faunaPerPage === Infinity);
+            btnAll.classList.toggle('btn-outline-secondary', faunaPerPage !== Infinity);
+          }
+        };
+        if (btn10) {
+          btn10.addEventListener('click', () => {
+            faunaPerPage = 10;
+            faunaPage = 1;
+            updateFaunaButtons();
+            renderFaunaPage();
+          });
+        }
+        if (btn20) {
+          btn20.addEventListener('click', () => {
+            faunaPerPage = 20;
+            faunaPage = 1;
+            updateFaunaButtons();
+            renderFaunaPage();
+          });
+        }
+        if (btn30) {
+          btn30.addEventListener('click', () => {
+            faunaPerPage = 30;
+            faunaPage = 1;
+            updateFaunaButtons();
+            renderFaunaPage();
+          });
+        }
+        if (btnAll) {
+          btnAll.addEventListener('click', () => {
+            faunaPerPage = Infinity; // mostrar todos
+            faunaPage = 1;
+            updateFaunaButtons();
+            renderFaunaPage();
+          });
+        }
+
+        // Carga inicial de datos
+        fetchData(apiUrl + '/flora').then((data) => {
+          renderFlora(Array.isArray(data) ? data : []);
+        });
+
+        fetchData(apiUrl + '/fauna').then((data) => {
+          faunaData = Array.isArray(data) ? data : [];
+          faunaPage = 1;
+          updateFaunaButtons();
+          renderFaunaPage();
+        });
+      });
+    </script>
+                  <!-- JS de vendors -->
                   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                   <script src="assets/vendor/aos/aos.js"></script>
                   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -227,7 +359,7 @@
                   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
                   <script src="assets/vendor/php-email-form/validate.js"></script>
               
-                  <!-- Template Main JS File -->
+                  <!-- JS principal de la plantilla -->
                   <script src="assets/js/main.js"></script>
   </body>
 </html>

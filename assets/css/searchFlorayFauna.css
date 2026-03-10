@@ -1,0 +1,77 @@
+/* Archivo: assets/css/searchFlorayFauna.css
+   Propósito: estilos específicos para la página de búsqueda de Flora y Fauna
+   Nota: este archivo consolida estilos que estaban inline en el HTML */
+.custom-nav-tabs .nav-link {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem 0.25rem 0 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.custom-nav-tabs .nav-link:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.custom-nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+
+/* Separación entre tabs e items */
+.container-tabs { margin-bottom: 1.25rem; }
+
+/* Utilidades de grilla de cinco columnas */
+.five-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.five-cols > .five-col { flex: 0 0 100%; }
+@media (min-width: 576px) { /* sm */
+  .five-cols > .five-col { flex: 0 0 calc(50% - 0.5rem); max-width: calc(50% - 0.5rem); }
+}
+@media (min-width: 768px) { /* md */
+  .five-cols > .five-col { flex: 0 0 calc(33.333% - 0.67rem); max-width: calc(33.333% - 0.67rem); }
+}
+@media (min-width: 992px) { /* lg */
+  .five-cols > .five-col { flex: 0 0 calc(20% - 0.8rem); max-width: calc(20% - 0.8rem); }
+}
+
+/* Con pocos ítems, centrar y ampliar */
+.five-cols.few-items { justify-content: center; }
+@media (min-width: 768px) {
+  .five-cols.few-items > .five-col { flex: 0 0 calc(50% - 0.5rem); max-width: calc(50% - 0.5rem); }
+}
+@media (min-width: 992px) {
+  .five-cols.few-items > .five-col { flex: 0 0 calc(50% - 0.6rem); max-width: calc(50% - 0.6rem); }
+}
+
+/* Estilos de tarjeta moderna */
+.card-modern {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+  background: #fff;
+}
+.card-modern:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
+.media-wrap {
+  position: relative; width: 100%; padding-top: 66.66%; overflow: hidden;
+  border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;
+}
+.media-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.card-title { font-weight: 600; }
+.card-body, .card-text { font-weight: 400; }
+.badge-type { margin-top: .25rem; font-weight: 400; }
+
+/* Barra de utilidades (cantidad por página) */
+.items-toolbar { display: flex; gap: .5rem; align-items: center; }
+.items-toolbar .btn { padding: .25rem .5rem; }
