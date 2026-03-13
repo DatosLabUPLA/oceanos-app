@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Prototipo - Flora y Fauna</title>
+    <title>Buscador</title>
 
     <!-- Vendor CSS -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/shared-navbar.css" rel="stylesheet" />
 
     <!-- Main CSS -->
     <link href="assets/css/main.css" rel="stylesheet" />
@@ -16,27 +17,27 @@
     <!-- Prototype CSS -->
     <link href="assets/css/floraFauna_prototipo.css" rel="stylesheet" />
   </head>
-  <body class="bodyone d-flex p-5">
-    <header id="header" class="header d-flex align-items-center mb-3">
-      <div class="container-sm d-flex align-items-center justify-content-between">
-        <a href="mobile.html" class="logo d-flex align-items-center">
-          <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Logo app oceanos" />
-        </a>
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="mobile.html">Inicio</a></li>
-            <li><a href="search_FlorayFauna.html">Flora y Fauna</a></li>
-            <li><a href="search_FloraFauna_prototipo.html" class="active">Prototipo</a></li>
-          </ul>
-        </nav>
+  <body class="bodyone p-5">
+    <nav class="top-navbar">
+      <div class="nav-left">
+        <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Olaapp Logo" class="nav-logo">
+        <ul class="nav-links">
+          <li class="active-dark"><a href="/">Sobre Olaapp</a></li>
+          <li><a href="colaboran.html">Colaboran</a></li>
+          <li><a href="juguemos.html">Juguemos</a></li>
+          <li class="active-yellow"><a href="mobile.html">Descarga Olaapp</a></li>
+          <li><a href="search_FlorayFauna.html">Descubre el mar</a></li>
+        </ul>
       </div>
-    </header>
+
+      <div class="nav-right">
+      </div>
+    </nav>
 
     <main class="container pb-5">
       <div class="row mb-2">
         <div class="col-12">
-          <h2 class="page-title">Explora la Flora y Fauna</h2>
-          <p class="page-subtitle">Prototipo visual con mejoras de diseño, filtros y rendimiento</p>
+          <h2 class="page-title" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Explora la vida marina y sus habitantes</h2>
         </div>
       </div>
 
@@ -49,9 +50,11 @@
           </div>
 
           <div class="d-flex align-items-center gap-2">
-            <span class="small text-muted">Tipo:</span>
-            <select id="filterTipo" class="form-select form-select-sm" style="min-width: 160px">
-              <option value="">Todos</option>
+            <span class="small text-muted">Categoría:</span>
+            <select id="filterCategoria" class="form-select form-select-sm" style="min-width: 160px">
+              <option value="all">Todos</option>
+              <option value="fauna">Animales Marinos</option>
+              <option value="flora">Algas</option>
             </select>
           </div>
 
@@ -70,67 +73,82 @@
         </div>
       </div>
 
-      <!-- Tabs -->
-      <ul class="nav nav-tabs prototype-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="flora-tab" data-bs-toggle="tab" data-bs-target="#flora-pane" type="button" role="tab">Flora</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="fauna-tab" data-bs-toggle="tab" data-bs-target="#fauna-pane" type="button" role="tab">Fauna</button>
-        </li>
+      <!-- Tabs (Intercambiados por Tipo) -->
+      <ul class="nav nav-tabs prototype-tabs" id="tipoTabs" role="tablist">
+        <!-- Opciones dinámicas agregadas por JavaScript según la categoría -->
       </ul>
 
       <div class="tab-content pt-3">
-        <div class="tab-pane fade show active" id="flora-pane" role="tabpanel" aria-labelledby="flora-tab">
-          <div id="floraGrid" class="five-cols"></div>
-          <nav class="mt-3"><ul id="floraPagination" class="pagination justify-content-center"></ul></nav>
-        </div>
-        <div class="tab-pane fade" id="fauna-pane" role="tabpanel" aria-labelledby="fauna-tab">
-          <div id="faunaGrid" class="five-cols"></div>
-          <nav class="mt-3"><ul id="faunaPagination" class="pagination justify-content-center"></ul></nav>
+        <div class="tab-pane fade show active" id="results-pane" role="tabpanel">
+          <div id="resultsGrid" class="five-cols"></div>
+          <nav class="mt-3"><ul id="resultsPagination" class="pagination justify-content-center"></ul></nav>
         </div>
       </div>
 
       <div id="skeletons" class="five-cols mt-3" aria-hidden="true"></div>
       <div id="emptyState" class="text-center text-muted d-none mt-4">No se encontraron resultados.</div>
 
-      <!-- Quick View Modal -->
-      <div class="modal fade" id="quickModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="quickTitle"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <div class="ratio ratio-4x3 bg-light rounded overflow-hidden">
-                  <img id="quickImg" src="" alt="" class="w-100 h-100 object-fit-cover" />
-                </div>
-                <div id="quickThumbs" class="quick-thumbs d-flex flex-wrap gap-2 mt-2"></div>
+    </main>
+
+    <div class="modal fade" id="quickModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content custom-card-modal">
+          <div class="modal-body p-0">
+            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="card-layout">
+              <div class="card-header-info">
+                <h2 id="quickNombreComunHeader" class="m-0"></h2>
+                <p id="quickNombreCientificoHeader" class="m-0 italic"></p>
               </div>
-              <div class="d-flex flex-column gap-3">
-                <div><span class="badge rounded-pill text-bg-light" id="quickTipo"></span></div>
-                <div class="table-responsive">
-                  <table class="table table-sm align-middle mb-0 quick-details">
-                    <tbody>
-                      <tr><th class="fw-semibold">Nombre Científico</th><td id="quickNombreCientifico"></td></tr>
-                      <tr><th class="fw-semibold">Nombre Común</th><td id="quickNombreComun"></td></tr>
-                      <tr><th class="fw-semibold">Distribución</th><td id="quickDistribucion"></td></tr>
-                      <tr><th class="fw-semibold">Hábitat</th><td id="quickHabitat"></td></tr>
-                      <tr><th class="fw-semibold">Descripción</th><td id="quickDescripcion"></td></tr>
-                      <tr><th class="fw-semibold">Reproducción</th><td id="quickReproduccion"></td></tr>
-                      <tr><th class="fw-semibold">Alimentación</th><td id="quickAlimentacion"></td></tr>
-                      <tr><th class="fw-semibold">Fuente</th><td id="quickFuente"></td></tr>
-                    </tbody>
-                  </table>
+              <div class="card-main-content">
+                <div class="card-column left-column">
+                  <div class="info-box box-blue" id="row-quickHabitat">
+                    <h3>¿Dónde vive?</h3>
+                    <p id="quickHabitat"></p>
+                  </div>
+                  <div class="info-box box-purple" id="row-quickDescripcion">
+                    <h3>¿Cómo es?</h3>
+                    <p id="quickDescripcion"></p>
+                  </div>
+                </div>
+                <div class="card-center">
+                  <div class="main-image-container">
+                    <img id="quickImg" src="" alt="" class="main-species-img" />
+                    <div id="quickThumbs" class="quick-thumbs-overlay"></div>
+                  </div>
+                </div>
+                <div class="card-column right-column">
+                  <div class="info-box box-grey-verde" id="row-quickDefensa">
+                    <h3>¿Cómo se defiende?</h3>
+                    <p id="quickDefensa"></p>
+                  </div>
+                  <div class="info-box box-grey-cafe" id="row-quickAlimentacion">
+                    <h3>¿Qué come?</h3>
+                    <p id="quickAlimentacion"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer-info">
+                <div class="info-box box-cafe" id="row-quickReproduccion">
+                  <h3>¿Cómo se reproduce?</h3>
+                  <p id="quickReproduccion"></p>
+                </div>
+                <div class="extra-info-section">
+                  <div class="info-text-block" id="row-quickDatosCuriosos">
+                    <h4>Datos curiosos</h4>
+                    <p id="quickDatosCuriosos"></p>
+                  </div>
+                  <div class="info-text-block" id="row-quickInformacionAdicional">
+                    <h4>Información adicional</h4>
+                    <p id="quickInformacionAdicional"></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <!-- Vendor JS -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

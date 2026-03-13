@@ -94,10 +94,6 @@
                                 <td class="table-secondary" id="nombreComun"></td>
                             </tr>
                             <tr>
-                                <th>Distribución</th>
-                                <td class="table-secondary" id="distribucion"></td>
-                            </tr>
-                            <tr>
                                 <th>Hábitat</th>
                                 <td class="table-secondary" id="habitat"></td>
                             </tr>
@@ -114,8 +110,16 @@
                                 <td class="table-secondary" id="alimentacion"></td>
                             </tr>
                             <tr>
-                                <th>Fuente</th>
-                                <td class="table-secondary" id="fuente"></td>
+                                <th>Información adicional</th>
+                                <td class="table-secondary" id="informacionAdicional"></td>
+                            </tr>
+                            <tr>
+                                <th>Datos curiosos</th>
+                                <td class="table-secondary" id="datosCuriosos"></td>
+                            </tr>
+                            <tr>
+                                <th>Defensa</th>
+                                <td class="table-secondary" id="defensa"></td>
                             </tr>
                         </table>
                     </div>
@@ -132,6 +136,36 @@
             const apiUrl = 'https://oceanos-api.datoslab.cl';
             const urlParams = new URLSearchParams(window.location.search);
             const itemId = urlParams.get('id');
+            const normalizeKey = (key) => String(key || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, '')
+                .replace(/[^a-zA-Z0-9_]/g, '')
+                .toLowerCase();
+            const getField = (item, ...candidates) => {
+                if (!item || typeof item !== 'object') return '';
+                const entries = Object.entries(item);
+                const lookup = new Map(entries.map(([key, value]) => [normalizeKey(key), value]));
+                for (const candidate of candidates) {
+                    const value = lookup.get(normalizeKey(candidate));
+                    if (value !== undefined && value !== null) return value;
+                }
+                return '';
+            };
+            const normalizeItemDetails = (item) => ({
+                ...item,
+                Nombre_Cientifico: getField(item, 'Nombre_Cientifico', 'Nombre Cientifico', 'Nombre científico'),
+                Nombre_Comun: getField(item, 'Nombre_Comun', 'Nombre Comun', 'Nombre común'),
+                Url_Imagen: getField(item, 'Url_Imagen', 'URL_Imagen', 'Url Imagen'),
+                Fotografo: getField(item, 'Fotografo', 'Fotógrafo'),
+                Habitat: getField(item, 'Habitat', 'Hábitat'),
+                Descripcion: getField(item, 'Descripcion', 'Descripción'),
+                Reproduccion: getField(item, 'Reproduccion', 'Reproducción'),
+                Alimentacion: getField(item, 'Alimentacion', 'Alimentación'),
+                Informacion_Adicional: getField(item, 'Informacion_Adicional', 'Información_Adicional', 'Informacion adicional', 'Información adicional'),
+                Datos_curiosos: getField(item, 'Datos_curiosos', 'Datos_Curiosos', 'Datos curiosos'),
+                Defensa: getField(item, 'Defensa')
+            });
 
             // Obtiene detalles de un elemento por ID
             const fetchItemDetails = async (id) => {
@@ -178,18 +212,20 @@
 
             // Renderiza los detalles del elemento en la tabla y el carrusel
             const renderItemDetails = (data) => {
-                document.getElementById('nombreCientifico').innerText = data.Nombre_Cientifico || 'N/A';
-                document.getElementById('nombreComun').innerText = data.Nombre_Comun || 'N/A';
-                document.getElementById('distribucion').innerText = data.Distribucion || 'N/A';
-                document.getElementById('habitat').innerText = data.Habitat || 'N/A';
-                document.getElementById('descripcion').innerText = data.Descripcion || 'N/A';
-                document.getElementById('reproduccion').innerText = data.Reproduccion || 'N/A';
-                document.getElementById('alimentacion').innerText = data.Alimentacion || 'N/A';
-                document.getElementById('fuente').innerText = data.Fuente || 'N/A';
-                document.getElementById('Descripcion_Imagen').innerText = (data.Fotografo ? `Fotografía: ${data.Fotografo}` : 'N/A');
+                const item = normalizeItemDetails(data);
+                document.getElementById('nombreCientifico').innerText = item.Nombre_Cientifico || 'N/A';
+                document.getElementById('nombreComun').innerText = item.Nombre_Comun || 'N/A';
+                document.getElementById('habitat').innerText = item.Habitat || 'N/A';
+                document.getElementById('descripcion').innerText = item.Descripcion || 'N/A';
+                document.getElementById('reproduccion').innerText = item.Reproduccion || 'N/A';
+                document.getElementById('alimentacion').innerText = item.Alimentacion || 'N/A';
+                document.getElementById('informacionAdicional').innerText = item.Informacion_Adicional || 'N/A';
+                document.getElementById('datosCuriosos').innerText = item.Datos_curiosos || 'N/A';
+                document.getElementById('defensa').innerText = item.Defensa || 'N/A';
+                document.getElementById('Descripcion_Imagen').innerText = (item.Fotografo ? `Fotografía: ${item.Fotografo}` : 'N/A');
 
                 // Actualizar el carrusel con las imágenes de la API
-                updateCarouselImages(data.Url_Imagen);
+                updateCarouselImages(item.Url_Imagen);
             };
 
             // Flujo principal: obtener el detalle y renderizar

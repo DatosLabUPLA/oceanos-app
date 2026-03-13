@@ -27,38 +27,77 @@
         <!-- Template Main CSS File -->
         <link href="assets/css/main.css" rel="stylesheet">
         <link href="assets/css/mobile.css" rel="stylesheet">
+        <link href="assets/css/shared-navbar.css" rel="stylesheet">
         
         <!-- ========================  ========================== -->
 
     </head>
 
-    <body class="bodyone d-flex">
-        <!-- ======= Header ======= -->
-        <header id="header" class="header d-flex align-items-center">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Logo app oceanos">
-                </a>
-                
-                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a href="mobile.html">Inicio</a></li>
-                        <li><a href="search_FlorayFauna.html">Flora y Fauna</a></li>
-                        <li><a href="search-with-help.html">Buscador</a></li>
-                        <li><a href="desafios.html" class="active">Desafios</a></li>
-                        <li><a href="index.html#contact">Contáctanos</a></li>
+    <body class="bodyone">
+        <nav class="top-navbar">
+            <div class="nav-content-wrapper">
+                <div class="nav-left">
+                    <a href="/">
+                        <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Olaapp Logo" class="nav-logo">
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="/">Sobre Olaapp</a></li>
+                        <li><a href="colaboran.html">Colaboran</a></li>
+                        <li class="active-dark"><a href="juguemos.html">Juguemos</a></li>
+                        <li class="active-yellow"><a href="mobile.html">Descarga Olaapp</a></li>
+                        <li><a href="search_FlorayFauna.html">Descubre el mar</a></li>
                     </ul>
-                </nav><!-- .navbar -->
+                </div>
+                <div class="nav-right">
+                </div>
             </div>
-        </header><!-- End Header -->
+        </nav>
 
-        <div class="juego-educaplay container-fluid text-center mt-5 pt-5  ">
+        <main>
+        <div class="juego-educaplay container-fluid text-center mt-5 pt-4">
             <iframe allow="fullscreen; autoplay;" allowfullscreen frameborder="0" 
             src="https://www.educaplay.com/game/21796111-aventura_marina_adivina_la_palabra.html"></iframe>
         </div>
+        </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-content position-relative">
+        <div class="container col-8 ">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="footer-info">
+                <h5>OlaApp</h5>
+
+                <p><a href="politica.html">Ver Nuestra Politica</a> <br> <br>
+
+                <h4>Dirección</h4>
+                  Avenida Playa Ancha 850 <br>
+                  Valparaíso, Chile <br> <br>
+                <h4>Contáctanos</h4>
+                  <strong>Phone:</strong> +56 9 7794 3429 <br>
+                  <strong>Email:</strong> olaappchile@gmail.com<br>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal text-center position-relative">
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong><span>OlaApp</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+        <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <div id="preloader"></div>
         
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -67,7 +106,6 @@
         <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>    

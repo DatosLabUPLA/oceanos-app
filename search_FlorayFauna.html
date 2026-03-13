@@ -1,365 +1,746 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <!-- Página de búsqueda Flora y Fauna: tabs, grillas y paginación -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>App Océano</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descubre el mar</title>
+    <meta name="description" content="Descubre el mar con Olaapp" />
+    <meta name="keywords" content="mar, flora, fauna, oceanos, olaapp" />
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/shared-navbar.css" rel="stylesheet" />
+    <link href="assets/css/floraFauna_prototipo.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Open Sans", sans-serif;
+        background: #07173d;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: url("assets/img/Dibujo fondo/Mar dibujo 4.jpeg") center/cover no-repeat;
+        opacity: 1;
+        z-index: -1;
+      }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+      .top-navbar {
+        position: relative;
+        z-index: 5;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
 
-    <!-- CSS de vendors (Bootstrap, iconos, efectos) -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+      .nav-links li.active-dark a {
+        background-color: rgba(35, 43, 62, 0.92);
+      }
 
-    <!-- CSS principal de la plantilla -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/mobile.css" rel="stylesheet">
+      .discover-shell {
+        position: relative;
+        max-width: 1400px;
+        margin: 20px auto;
+        padding: 40px 60px;
+        border-radius: 120px;
+        background: transparent;
+        overflow: visible;
+      }
 
+      .content-layer {
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-title {
+        margin: 0 0 40px;
+        text-align: center;
+        font-size: clamp(2.5rem, 5vw, 3.8rem);
+        font-weight: 800;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0,0,0,0.5);
+      }
+
+      .cards-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+        align-items: stretch;
+      }
+
+      .discover-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 14px;
+        text-decoration: none;
+        color: #ffffff;
+        height: 100%;
+      }
+
+      .discover-trigger {
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        appearance: none;
+      }
+
+      .discover-card.is-link .card-figure,
+      .discover-card.is-link .card-label {
+        transition: transform 0.25s ease, filter 0.25s ease, text-shadow 0.25s ease;
+      }
+
+      .discover-card.is-link:hover .card-figure,
+      .discover-card.is-link:focus-visible .card-figure {
+        transform: translateY(-8px) scale(1.03);
+        filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.28));
+      }
+
+      .discover-card.is-link:hover .card-label,
+      .discover-card.is-link:focus-visible .card-label {
+        text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      }
+
+      .card-figure {
+        width: min(240px, 100%);
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+      }
+
+      .card-figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 16px 16px rgba(0, 0, 0, 0.24));
+      }
+
+      .card-label {
+        margin: 0;
+        font-size: clamp(1.5rem, 2.2vw, 2rem);
+        font-weight: 700;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+      }
+
+      .message-panel {
+        max-width: 1000px;
+        margin: 60px auto 0;
+        padding: 30px 40px;
+        text-align: center;
+        font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+        font-style: italic;
+        font-weight: 600;
+        line-height: 1.4;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(2px);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+      }
+
+      .animal-showcase {
+        display: none;
+        margin-top: 28px;
+        padding: 26px;
+        border-radius: 28px;
+        background: rgba(8, 24, 67, 0.34);
+        border: 1px solid rgba(176, 233, 255, 0.2);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 14px 34px rgba(1, 10, 33, 0.22);
+        backdrop-filter: blur(8px);
+      }
+
+      .animal-showcase.visible {
+        display: block;
+      }
+
+      .showcase-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .showcase-copy h2 {
+        margin: 0;
+        font-size: clamp(1.45rem, 2.5vw, 2rem);
+        font-weight: 700;
+        text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      }
+
+      .showcase-copy p {
+        margin: 8px 0 0;
+        color: rgba(239, 249, 255, 0.82);
+      }
+
+      .showcase-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .showcase-actions .btn {
+        border-radius: 999px;
+        padding-inline: 1rem;
+        font-weight: 700;
+      }
+
+      .animal-grid-status {
+        color: rgba(239, 249, 255, 0.76);
+        font-size: 0.95rem;
+      }
+
+      .animal-showcase .media-wrap {
+        padding-top: 74%;
+      }
+
+      .animal-showcase .card-modern {
+        min-height: 100%;
+      }
+
+      .animal-showcase .card-title {
+        font-weight: 600 !important;
+        text-shadow: none !important;
+        -webkit-text-stroke: 0 !important;
+        letter-spacing: 0.2px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .animal-showcase .skeleton-grid {
+        display: none;
+      }
+
+      .animal-showcase.loading .skeleton-grid {
+        display: flex;
+      }
+
+      .animal-showcase.loading #floraGrid,
+      .animal-showcase.loading #floraEmpty,
+      .animal-showcase.loading #animalsGrid,
+      .animal-showcase.loading #animalsEmpty {
+        display: none;
+      }
+
+      .animal-showcase .skeleton-grid .skel-card {
+        height: 250px;
+      }
+
+      #floraEmpty,
+      #animalsEmpty {
+        margin-top: 8px;
+        color: rgba(239, 249, 255, 0.82);
+        background: rgba(8, 24, 67, 0.3);
+        border: 1px dashed rgba(176, 233, 255, 0.25);
+        border-radius: 20px;
+        padding: 1rem 1.25rem;
+      }
+
+      @media (max-width: 1100px) {
+        .top-navbar {
+          flex-direction: column;
+          padding: 12px 20px;
+        }
+
+        .discover-shell {
+          margin: 14px 14px 24px;
+          padding: 28px 22px 38px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .cards-row {
+          grid-template-columns: 1fr;
+        }
+
+        .showcase-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .card-figure {
+          width: min(230px, 80vw);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-left,
+        .nav-right {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .nav-links {
+          justify-content: center;
+        }
+
+        .discover-shell {
+          border-radius: 28px;
+          padding: 24px 16px 34px;
+        }
+
+        .message-panel {
+          padding: 14px 16px;
+        }
+      }
+    </style>
   </head>
-  <body class="bodyone d-flex p-5">
-    
-    <!-- Encabezado del sitio: logo y navegación -->
-    <header id="header" class="header d-flex align-items-center">
-      <div class="container-sm d-flex align-items-center justify-content-between">
-        <div >
-          <a href="index.html" class="logo d-flex align-items-center">
-            <!-- Logo del proyecto -->
-            <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Logo app oceanos">
-          </a>
-        </div>
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="mobile.html">Inicio</a></li>
-            <li><a href="search_FlorayFauna.html" class="active">Flora y Fauna</a></li>
-            <li><a href="search_FloraFauna_prototipo.html">Prototipo</a></li>
-            <li><a href="search-with-help.html">Buscador</a></li>
-            <li><a href="desafios.html">Desafíos</a></li>
-            <li><a href="index.html#contact">Contáctanos</a></li>
-
-          </ul>
-        </nav><!-- .navbar -->
+  <body>
+    <nav class="top-navbar">
+      <div class="nav-left">
+        <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Olaapp Logo" class="nav-logo">
+        <ul class="nav-links">
+          <li class="active-dark"><a href="/">Sobre Olaapp</a></li>
+          <li><a href="colaboran.html">Colaboran</a></li>
+          <li><a href="juguemos.html">Juguemos</a></li>
+          <li class="active-yellow"><a href="mobile.html">Descarga Olaapp</a></li>
+          <li><a href="search_FlorayFauna.html">Descubre el mar</a></li>
+        </ul>
       </div>
-    </header><!-- End Header -->
 
-    <!-- Sección principal: tabs Flora/Fauna y sus contenidos -->
-    <section id="searchff" class="searchff">
-      <div class="container pt-4 ">
-        <div class="go">
-          <div class="row" >
-              <div class="col-12 ">
-                <h2> <span>Flora y Fauna</span></h2>
-              </div>
-          </div>
-            
-          <div>
-            <div class="container-tabs">
-              <!-- Tabs de navegación entre Flora y Fauna -->
-              <ul class="nav nav-tabs custom-nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active custom-tab-button" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="flora-tab-pane" aria-selected="true">Flora</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link custom-tab-button" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="fauna-tab-pane" aria-selected="false">Fauna</button>
-                </li>
-              </ul>              
+      <div class="nav-right">
+      </div>
+    </nav>
+
+    <main class="discover-shell">
+      <div class="content-layer">
+        <h1 class="page-title" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Descubre el mar</h1>
+
+        <section class="cards-row" aria-label="Opciones para descubrir el mar">
+          <button class="discover-card discover-trigger is-link" id="floraTrigger" type="button" aria-expanded="false" aria-controls="floraShowcase">
+            <div class="card-figure">
+              <img src="assets/img/Descubre/1.png" alt="Algas marinas" />
+            </div>
+            <p class="card-label" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Algas marinas</p>
+          </button>
+
+          <button class="discover-card discover-trigger is-link" id="animalsTrigger" type="button" aria-expanded="false" aria-controls="animalsShowcase">
+            <div class="card-figure">
+              <img src="assets/img/Descubre/2.png" alt="Animales marinos" />
+            </div>
+            <p class="card-label" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Animales marinos</p>
+          </button>
+
+          <a class="discover-card is-link" href="search_FloraFauna_prototipo.html">
+            <div class="card-figure">
+              <img src="assets/img/Descubre/3.png" alt="Sumérgete y conoce" />
+            </div>
+            <p class="card-label" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Sumérgete y conoce</p>
+          </a>
+        </section>
+
+        <div class="message-panel" id="mainMessage" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">
+          ¡Ven a descubrir los animales, algas y otros organismos que te esperan en las zonas costeras! ¡Cada rincón tiene una sorpresa lista para ti!
+        </div>
+
+        <section class="animal-showcase" id="floraShowcase" aria-live="polite">
+          <div class="showcase-head">
+            <div class="showcase-copy">
+              <h2 style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Algas marinas destacadas</h2>
+              <p>Cada vez que pulses el botón, verás un grupo distinto. Haz click en un alga para abrir su tarjeta.</p>
+            </div>
+            <div class="showcase-actions">
+              <span class="animal-grid-status" id="floraStatus"></span>
+              <button class="btn btn-outline-light" id="floraShuffle" type="button">Mostrar otras</button>
             </div>
           </div>
-          <!-- Contenido de cada tab -->
-          <div class="tab-content" id="myTabContent" >
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="flora-tab" tabindex="0">
-              <!-- Animación de carga (Flora) -->
-              <div id="loader-wrapper" class="pt-5 pb-5">
-                <div id="loader"></div>
-              </div>
-              <!-- Fin animación de carga -->
-              
-              <div class="container2 five-cols" id="floraContainer">
-              <!-- Contenido de flora se agregará aquí dinámicamente -->
-              </div>
-            </div>
+          <div class="five-cols skeleton-grid" id="floraSkeletons" aria-hidden="true">
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+          </div>
+          <div class="five-cols" id="floraGrid"></div>
+          <div id="floraEmpty" class="text-center d-none">No fue posible cargar flora en este momento.</div>
+        </section>
 
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="fauna-tab" tabindex="0">
-              <!-- Animación de carga (Fauna) - actualmente no usada -->
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="items-toolbar">
-                  <span>Mostrar por página:</span>
-                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow10">10</button>
-                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow20">20</button>
-                  <button type="button" class="btn btn-outline-primary btn-sm" id="faunaShow30">30</button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm" id="faunaShowAll">Todos</button>
+        <section class="animal-showcase" id="animalsShowcase" aria-live="polite">
+          <div class="showcase-head">
+            <div class="showcase-copy">
+              <h2 style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Animales marinos destacados</h2>
+              <p>Cada vez que pulses el botón, verás un grupo distinto. Haz click en un animal para abrir su tarjeta.</p>
+            </div>
+            <div class="showcase-actions">
+              <span class="animal-grid-status" id="animalsStatus"></span>
+              <button class="btn btn-outline-light" id="animalsShuffle" type="button">Mostrar otros</button>
+            </div>
+          </div>
+          <div class="five-cols skeleton-grid" id="animalsSkeletons" aria-hidden="true">
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+            <div class="five-col"><div class="skeleton skel-card"></div></div>
+          </div>
+          <div class="five-cols" id="animalsGrid"></div>
+          <div id="animalsEmpty" class="text-center d-none">No fue posible cargar animales en este momento.</div>
+        </section>
+      </div>
+    </main>
+
+    <div class="modal fade" id="quickModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content custom-card-modal">
+          <div class="modal-body p-0">
+            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="card-layout">
+              <div class="card-header-info">
+                <h2 id="quickNombreComunHeader" class="m-0"></h2>
+                <p id="quickNombreCientificoHeader" class="m-0 italic"></p>
+              </div>
+              <div class="card-main-content">
+                <div class="card-column left-column">
+                  <div class="info-box box-blue" id="row-quickHabitat">
+                    <h3>¿Dónde vive?</h3>
+                    <p id="quickHabitat"></p>
+                  </div>
+                  <div class="info-box box-purple" id="row-quickDescripcion">
+                    <h3>¿Cómo es?</h3>
+                    <p id="quickDescripcion"></p>
+                  </div>
+                </div>
+                <div class="card-center">
+                  <div class="main-image-container">
+                    <img id="quickImg" src="" alt="" class="main-species-img" />
+                    <div id="quickThumbs" class="quick-thumbs-overlay"></div>
+                  </div>
+                </div>
+                <div class="card-column right-column">
+                  <div class="info-box box-grey-verde" id="row-quickDefensa">
+                    <h3>¿Cómo se defiende?</h3>
+                    <p id="quickDefensa"></p>
+                  </div>
+                  <div class="info-box box-grey-cafe" id="row-quickAlimentacion">
+                    <h3>¿Qué come?</h3>
+                    <p id="quickAlimentacion"></p>
+                  </div>
                 </div>
               </div>
-              <div class="container2 five-cols" id="faunaContainer">
-                <!-- Contenido de fauna se agregará aquí dinámicamente -->
+              <div class="card-footer-info">
+                <div class="info-box box-cafe" id="row-quickReproduccion">
+                  <h3>¿Cómo se reproduce?</h3>
+                  <p id="quickReproduccion"></p>
+                </div>
+                <div class="extra-info-section">
+                  <div class="info-text-block" id="row-quickDatosCuriosos">
+                    <h4>Datos curiosos</h4>
+                    <p id="quickDatosCuriosos"></p>
+                  </div>
+                  <div class="info-text-block" id="row-quickInformacionAdicional">
+                    <h4>Información adicional</h4>
+                    <p id="quickInformacionAdicional"></p>
+                  </div>
+                </div>
               </div>
-              <nav aria-label="Paginación Fauna" class="mt-3">
-                <ul class="pagination justify-content-center" id="faunaPagination"></ul>
-              </nav>
             </div>
-
-            <br>
-
-            <!-- CTA para ir a la misma sección (posible link promocional) -->
-            <div class="row">
-              <div class="col-12 text text-center ">
-                <a class=" btn-started" href="search_FlorayFauna.html">
-                  <button class="buscadoree search_FlorayFauna.html">Conoce Flora y Fauna</button>
-                </a>
-              </div>
-            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Lógica de página: consume API y renderiza grillas/paginación -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const apiUrl = 'https://oceanos-api.datoslab.cl';
-
-        // Helper: obtiene JSON desde la API (maneja error devolviendo array vacío)
-        const fetchData = async (url) => {
-          try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return data;
-          } catch (error) {
-            console.error('Error fetching data:', error);
-            return [];
+      document.addEventListener("DOMContentLoaded", () => {
+        const apiUrl = "https://oceanos-api.datoslab.cl";
+        const sampleSize = 5;
+        const sections = {
+          flora: {
+            trigger: document.getElementById("floraTrigger"),
+            showcase: document.getElementById("floraShowcase"),
+            grid: document.getElementById("floraGrid"),
+            status: document.getElementById("floraStatus"),
+            shuffle: document.getElementById("floraShuffle"),
+            empty: document.getElementById("floraEmpty"),
+            fallbackImage: "assets/img/Descubre/1.png",
+            endpoint: "flora",
+            singular: "Alga marina",
+            plural: "algas marinas"
+          },
+          fauna: {
+            trigger: document.getElementById("animalsTrigger"),
+            showcase: document.getElementById("animalsShowcase"),
+            grid: document.getElementById("animalsGrid"),
+            status: document.getElementById("animalsStatus"),
+            shuffle: document.getElementById("animalsShuffle"),
+            empty: document.getElementById("animalsEmpty"),
+            fallbackImage: "assets/img/Descubre/2.png",
+            endpoint: "fauna",
+            singular: "Animal marino",
+            plural: "animales marinos"
           }
         };
-
-        // Helper: extrae la primera imagen de una lista separada por comas
-        const getFirstImageUrl = (urlList) => {
-          if (!urlList) return '';
-          const imageUrls = String(urlList).split(',');
-          return (imageUrls[0] || '').trim();
+        const quick = {
+          modal: document.getElementById("quickModal")
+        };
+        const mainMessage = document.getElementById("mainMessage");
+        const messages = {
+          flora: "Explora las algas que habitan nuestro litoral y conoce su importancia para el equilibrio de los ecosistemas marinos.",
+          fauna: "Descubre especies sorprendentes de la costa chilena y aprende sobre sus formas, hábitos y el entorno donde viven."
+        };
+        const state = {
+          data: { flora: [], fauna: [] },
+          promises: { flora: null, fauna: null },
+          lastSelectionIds: { flora: [], fauna: [] }
         };
 
-        // Render de Flora: grilla sin paginación; centra y amplía si hay pocos ítems
-        const renderFlora = (data) => {
-          const loader = document.getElementById('loader-wrapper');
-          if (loader) loader.style.display = 'none';
+        const firstImg = (value) => {
+          if (!value) return "";
+          return String(value).split(",")[0]?.trim() || "";
+        };
 
-          const container = document.getElementById('floraContainer');
-          container.innerHTML = '';
-          // Centrar y ampliar si hay 1-2 items
-          if (Array.isArray(data) && data.length > 0 && data.length <= 2) {
-            container.classList.add('few-items');
-          } else {
-            container.classList.remove('few-items');
+        const normalizeKey = (key) =>
+          String(key || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "").replace(/[^a-zA-Z0-9_]/g, "").toLowerCase();
+
+        const getField = (item, ...candidates) => {
+          if (!item || typeof item !== "object") return "";
+          const lookup = new Map(Object.entries(item).map(([key, value]) => [normalizeKey(key), value]));
+          for (const candidate of candidates) {
+            const value = lookup.get(normalizeKey(candidate));
+            if (value !== undefined && value !== null) return value;
           }
-          data.forEach((item) => {
-            const wrap = document.createElement('div');
-            wrap.className = 'five-col';
-
-            const link = document.createElement('a');
-            link.href = `detalle.html?id=${item.ID}`;
-            link.className = 'text-decoration-none';
-
-            const card = document.createElement('div');
-            card.className = 'card card-modern h-100';
-
-            const imageUrl = getFirstImageUrl(item.Url_Imagen);
-            card.innerHTML = `
-              <div class="media-wrap">
-                <img src="IMAGENES/${imageUrl}" alt="${item.Nombre_Comun || 'Imagen'}" loading="lazy" onerror="this.onerror=null;this.src='assets/img/placeholder.png';">
-              </div>
-              <div class="card-body">
-                <h6 class="card-title mb-1">${item.Nombre_Comun || ''}</h6>
-                <span class="badge rounded-pill text-bg-light badge-type">${item.Tipo || ''}</span>
-              </div>
-            `;
-
-            link.appendChild(card);
-            wrap.appendChild(link);
-            container.appendChild(wrap);
-          });
+          return "";
         };
 
-        // Estado y referencias para Fauna (grilla con paginación)
-        let faunaData = [];
-        let faunaPage = 1;
-        let faunaPerPage = 10; // por defecto 10
-
-        const faunaContainer = document.getElementById('faunaContainer');
-        const faunaPagination = document.getElementById('faunaPagination');
-        const btn10 = document.getElementById('faunaShow10');
-        const btn20 = document.getElementById('faunaShow20');
-        const btn30 = document.getElementById('faunaShow30');
-        const btnAll = document.getElementById('faunaShowAll');
-
-        // Renderiza la grilla de Fauna para la página actual
-        const renderFaunaGrid = (items) => {
-          faunaContainer.innerHTML = '';
-          items.forEach((item) => {
-            const wrap = document.createElement('div');
-            wrap.className = 'five-col';
-
-            const link = document.createElement('a');
-            link.href = `detalle.html?id=${item.ID}`;
-            link.className = 'text-decoration-none';
-
-            const card = document.createElement('div');
-            card.className = 'card h-100';
-
-            const imageUrl = getFirstImageUrl(item.Url_Imagen);
-            card.innerHTML = `
-              <img src="IMAGENES/${imageUrl}" class="card-img-top" alt="${item.Nombre_Comun || 'Imagen'}" loading="lazy" onerror="this.onerror=null;this.src='assets/img/placeholder.png';">
-              <div class="card-body">
-                <h6 class="card-title mb-1">${item.Nombre_Comun || ''}</h6>
-                <p class="card-text"><small class="text-body-secondary">${item.Tipo || ''}</small></p>
-              </div>
-            `;
-
-            link.appendChild(card);
-            wrap.appendChild(link);
-            faunaContainer.appendChild(wrap);
-          });
-        };
-
-        // Construye la paginación de Fauna (ventana de 5 páginas)
-        const renderFaunaPagination = () => {
-          const total = faunaData.length;
-          const perPage = Math.min(faunaPerPage, total) || total;
-          const totalPages = Math.max(1, Math.ceil(total / perPage));
-          faunaPagination.innerHTML = '';
-          // Si se muestran todos, ocultar paginación
-          if (perPage >= total) {
-            faunaPagination.style.display = 'none';
-            return;
-          } else {
-            faunaPagination.style.display = '';
-          }
-
-          const createItem = (label, page, disabled = false, active = false) => {
-            const li = document.createElement('li');
-            li.className = `page-item${disabled ? ' disabled' : ''}${active ? ' active' : ''}`;
-            const a = document.createElement('a');
-            a.className = 'page-link';
-            a.href = '#';
-            a.textContent = label;
-            if (!disabled) {
-              a.addEventListener('click', (e) => {
-                e.preventDefault();
-                faunaPage = page;
-                renderFaunaPage();
-              });
-            }
-            li.appendChild(a);
-            return li;
-          };
-
-          faunaPagination.appendChild(createItem('«', Math.max(1, faunaPage - 1), faunaPage === 1));
-          const windowSize = 5;
-          const start = Math.max(1, faunaPage - Math.floor(windowSize / 2));
-          const end = Math.min(totalPages, start + windowSize - 1);
-          for (let p = start; p <= end; p++) {
-            faunaPagination.appendChild(createItem(String(p), p, false, p === faunaPage));
-          }
-          faunaPagination.appendChild(createItem('»', Math.min(totalPages, faunaPage + 1), faunaPage === totalPages));
-        };
-
-        // Aplica slicing según página/tamaño y renderiza grilla + paginación
-        const renderFaunaPage = () => {
-          const loader = document.getElementById('loader-wrapper');
-          if (loader) loader.style.display = 'none';
-
-          const perPage = Math.min(faunaPerPage, faunaData.length) || faunaData.length;
-          const start = (faunaPage - 1) * perPage;
-          const slice = faunaData.slice(start, start + perPage);
-          renderFaunaGrid(slice);
-          renderFaunaPagination();
-        };
-
-        // Botones para cambiar tamaño de página
-        const updateFaunaButtons = () => {
-          const setBtn = (btn, active, outlineClass = 'btn-outline-primary', activeClass = 'btn-primary') => {
-            if (!btn) return;
-            btn.classList.toggle('active', active);
-            btn.classList.toggle(activeClass, active);
-            btn.classList.toggle(outlineClass, !active);
-          };
-          setBtn(btn10, faunaPerPage === 10);
-          setBtn(btn20, faunaPerPage === 20);
-          setBtn(btn30, faunaPerPage === 30);
-          if (btnAll) {
-            btnAll.classList.toggle('active', faunaPerPage === Infinity);
-            btnAll.classList.toggle('btn-secondary', faunaPerPage === Infinity);
-            btnAll.classList.toggle('btn-outline-secondary', faunaPerPage !== Infinity);
-          }
-        };
-        if (btn10) {
-          btn10.addEventListener('click', () => {
-            faunaPerPage = 10;
-            faunaPage = 1;
-            updateFaunaButtons();
-            renderFaunaPage();
-          });
-        }
-        if (btn20) {
-          btn20.addEventListener('click', () => {
-            faunaPerPage = 20;
-            faunaPage = 1;
-            updateFaunaButtons();
-            renderFaunaPage();
-          });
-        }
-        if (btn30) {
-          btn30.addEventListener('click', () => {
-            faunaPerPage = 30;
-            faunaPage = 1;
-            updateFaunaButtons();
-            renderFaunaPage();
-          });
-        }
-        if (btnAll) {
-          btnAll.addEventListener('click', () => {
-            faunaPerPage = Infinity; // mostrar todos
-            faunaPage = 1;
-            updateFaunaButtons();
-            renderFaunaPage();
-          });
-        }
-
-        // Carga inicial de datos
-        fetchData(apiUrl + '/flora').then((data) => {
-          renderFlora(Array.isArray(data) ? data : []);
+        const normalizeItem = (item) => ({
+          ...item,
+          ID: getField(item, "ID"),
+          Tipo: getField(item, "Tipo"),
+          Nombre_Cientifico: getField(item, "Nombre_Cientifico", "Nombre Cientifico", "Nombre científico"),
+          Nombre_Comun: getField(item, "Nombre_Comun", "Nombre Comun", "Nombre común"),
+          Url_Imagen: getField(item, "Url_Imagen", "URL_Imagen", "Url Imagen"),
+          Habitat: getField(item, "Habitat", "Hábitat"),
+          Descripcion: getField(item, "Descripcion", "Descripción"),
+          Reproduccion: getField(item, "Reproduccion", "Reproducción"),
+          Alimentacion: getField(item, "Alimentacion", "Alimentación"),
+          Informacion_Adicional: getField(item, "Informacion_Adicional", "Información_Adicional", "Informacion adicional", "Información adicional"),
+          Datos_curiosos: getField(item, "Datos_curiosos", "Datos_Curiosos", "Datos curiosos"),
+          Defensa: getField(item, "Defensa")
         });
 
-        fetchData(apiUrl + '/fauna').then((data) => {
-          faunaData = Array.isArray(data) ? data : [];
-          faunaPage = 1;
-          updateFaunaButtons();
-          renderFaunaPage();
+        const getFallbackImage = (kind) => sections[kind].fallbackImage;
+
+        const getImageSrc = (item, kind) => {
+          const fallback = getFallbackImage(kind);
+          const img = firstImg(item && item.Url_Imagen);
+          if (!img) return fallback;
+          if (/^https?:\/\//i.test(img) || img.startsWith("assets/") || img.startsWith("IMAGENES/")) return img;
+          return `IMAGENES/${img}`;
+        };
+
+        const shuffle = (items) => {
+          const copy = [...items];
+          for (let i = copy.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        };
+
+        const sameSelection = (a, b) => {
+          if (a.length !== b.length) return false;
+          const setB = new Set(b.map(String));
+          return a.every((id) => setB.has(String(id)));
+        };
+
+        const getRandomSelection = (items, count, kind) => {
+          const max = Math.min(count, items.length);
+          if (max === 0) return [];
+          let selection = [];
+          let tries = 0;
+          do {
+            selection = shuffle(items).slice(0, max);
+            tries += 1;
+          } while (tries < 10 && sameSelection(selection.map((item) => item.ID), state.lastSelectionIds[kind]));
+          state.lastSelectionIds[kind] = selection.map((item) => item.ID);
+          return selection;
+        };
+
+        const cardHTML = (item, kind) => {
+          const imgSrc = getImageSrc(item, kind);
+          const fallbackImg = getFallbackImage(kind);
+          const nombre = item.Nombre_Comun || sections[kind].singular;
+          return `
+            <a href="detalle.html?id=${item.ID}" class="text-decoration-none" data-quick-id="${item.ID}" data-kind="${kind}">
+              <div class="card card-modern h-100">
+                <div class="media-wrap">
+                  <img src="${imgSrc}" alt="${nombre}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImg}';" />
+                  <div class="media-overlay"></div>
+                  <div class="quick-wrap">
+                    <button class="btn btn-sm btn-light quick-btn" type="button" data-quick-id="${item.ID}" data-kind="${kind}" title="Vista rápida">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title mb-1 line-clamp-2" title="${nombre}">${nombre}</h6>
+                </div>
+              </div>
+            </a>
+          `;
+        };
+
+        const setLoading = (kind, loading) => {
+          sections[kind].showcase.classList.toggle("loading", loading);
+        };
+
+        const renderSelection = (items, kind) => {
+          const section = sections[kind];
+          section.grid.innerHTML = "";
+          section.empty.classList.toggle("d-none", items.length !== 0);
+          if (!items.length) return;
+          items.forEach((item) => {
+            const wrap = document.createElement("div");
+            wrap.className = "five-col";
+            wrap.innerHTML = cardHTML(item, kind);
+            section.grid.appendChild(wrap);
+          });
+        };
+
+        const ensureLoaded = async (kind) => {
+          if (state.data[kind].length) return state.data[kind];
+          if (!state.promises[kind]) {
+            state.promises[kind] = fetch(`${apiUrl}/${sections[kind].endpoint}`)
+              .then((response) => response.json())
+              .then((data) => {
+                state.data[kind] = Array.isArray(data) ? data.map(normalizeItem).filter((item) => item.ID) : [];
+                return state.data[kind];
+              })
+              .catch((error) => {
+                state.promises[kind] = null;
+                throw error;
+              });
+          }
+          return state.promises[kind];
+        };
+
+        const setRow = (id, value) => {
+          const element = document.getElementById(id);
+          if (element) {
+            const rowId = `row-${id}`;
+            const rowElement = document.getElementById(rowId);
+            const val = String(value || "").trim();
+            if (val && val.toLowerCase() !== "n/a") {
+              element.textContent = val;
+              if (rowElement) rowElement.style.display = "";
+            } else {
+              element.textContent = "";
+              if (rowElement) rowElement.style.display = "none";
+            }
+          }
+        };
+
+        const openQuickView = (id, kind) => {
+          const item = state.data[kind].find((entry) => String(entry.ID) === String(id));
+          if (!item) return;
+          const nombre = item.Nombre_Comun || "";
+          const cientifico = item.Nombre_Cientifico || "";
+          const fallbackImg = getFallbackImage(kind);
+          const rawImgs = String(item.Url_Imagen || "").split(",").map((value) => value.trim()).filter(Boolean);
+          const normalizeImage = (value) => /^https?:\/\//i.test(value) || value.startsWith("assets/") || value.startsWith("IMAGENES/") ? value : `IMAGENES/${value}`;
+          const imgList = rawImgs.length ? rawImgs.map(normalizeImage) : [fallbackImg];
+
+          const nameHeader = document.getElementById("quickNombreComunHeader");
+          const scientificHeader = document.getElementById("quickNombreCientificoHeader");
+          if (nameHeader) nameHeader.textContent = nombre;
+          if (scientificHeader) scientificHeader.textContent = cientifico;
+
+          setRow("quickHabitat", item.Habitat);
+          setRow("quickDescripcion", item.Descripcion);
+          setRow("quickReproduccion", item.Reproduccion);
+          setRow("quickAlimentacion", item.Alimentacion);
+          setRow("quickDefensa", item.Defensa);
+          setRow("quickDatosCuriosos", item.Datos_curiosos);
+          setRow("quickInformacionAdicional", item.Informacion_Adicional);
+
+          const quickImg = document.getElementById("quickImg");
+          if (quickImg) {
+            quickImg.src = imgList[0];
+            quickImg.alt = nombre;
+            quickImg.onerror = () => { quickImg.onerror = null; quickImg.src = fallbackImg; };
+          }
+
+          const thumbs = document.getElementById("quickThumbs");
+          if (thumbs) {
+            thumbs.innerHTML = imgList.map((src, index) => {
+              const active = index === 0 ? " active" : "";
+              return `<img src="${src}" alt="thumb" class="${active}" data-thumb-src="${src}" onerror="this.onerror=null;this.src='${fallbackImg}';this.setAttribute('data-thumb-src','${fallbackImg}');">`;
+            }).join("");
+            thumbs.querySelectorAll("img").forEach((imgEl) => {
+              imgEl.addEventListener("click", () => {
+                const newSrc = imgEl.getAttribute("data-thumb-src");
+                if (newSrc && quickImg) quickImg.src = newSrc;
+                thumbs.querySelectorAll("img").forEach((thumb) => thumb.classList.remove("active"));
+                imgEl.classList.add("active");
+              });
+            });
+          }
+          bootstrap.Modal.getOrCreateInstance(quick.modal).show();
+        };
+
+        const showRandomSelection = async (kind) => {
+          const otherKind = kind === "flora" ? "fauna" : "flora";
+          sections[otherKind].showcase.classList.remove("visible");
+          sections[otherKind].trigger.setAttribute("aria-expanded", "false");
+          const section = sections[kind];
+          section.showcase.classList.add("visible");
+          section.trigger.setAttribute("aria-expanded", "true");
+          if (mainMessage) mainMessage.textContent = messages[kind];
+          setLoading(kind, true);
+          section.status.textContent = kind === "flora" ? "Cargando flora..." : "Cargando fauna...";
+          try {
+            const items = await ensureLoaded(kind);
+            const selection = getRandomSelection(items, sampleSize, kind);
+            renderSelection(selection, kind);
+            section.status.textContent = selection.length ? `${selection.length} ${sections[kind].plural} para explorar` : `No hay ${sections[kind].plural} disponibles`;
+            section.showcase.scrollIntoView({ behavior: "smooth", block: "start" });
+          } catch (error) {
+            console.error(error);
+            renderSelection([], kind);
+            section.empty.classList.remove("d-none");
+            section.status.textContent = "No se pudo cargar la selección";
+          } finally {
+            setLoading(kind, false);
+          }
+        };
+
+        sections.flora.trigger.addEventListener("click", () => showRandomSelection("flora"));
+        sections.flora.shuffle.addEventListener("click", () => showRandomSelection("flora"));
+        sections.fauna.trigger.addEventListener("click", () => showRandomSelection("fauna"));
+        sections.fauna.shuffle.addEventListener("click", () => showRandomSelection("fauna"));
+        sections.flora.grid.addEventListener("click", (event) => {
+          const trigger = event.target.closest("[data-quick-id]");
+          if (!trigger) return;
+          event.preventDefault();
+          openQuickView(trigger.getAttribute("data-quick-id"), "flora");
+        });
+        sections.fauna.grid.addEventListener("click", (event) => {
+          const trigger = event.target.closest("[data-quick-id]");
+          if (!trigger) return;
+          event.preventDefault();
+          openQuickView(trigger.getAttribute("data-quick-id"), "fauna");
         });
       });
     </script>
-                  <!-- JS de vendors -->
-                  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                  <script src="assets/vendor/aos/aos.js"></script>
-                  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-                  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-                  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-                  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-                  <script src="assets/vendor/php-email-form/validate.js"></script>
-              
-                  <!-- JS principal de la plantilla -->
-                  <script src="assets/js/main.js"></script>
   </body>
 </html>

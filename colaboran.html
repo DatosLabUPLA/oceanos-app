@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>App Oceano - Colaboran</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/shared-navbar.css" rel="stylesheet">
+
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      /* Carousel Section Styles */
+      .colaboran-section {
+        padding: 40px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .colaboran-title {
+        color: #00b4d8;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        font-family: Arial;
+      }
+
+      .colaborador-img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+
+      .colaborador-name {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .colaborador-desc {
+        font-style: italic;
+        color: #333;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .quote-mark {
+        color: #00b4d8;
+        font-weight: bold;
+      }
+
+      /* Custom Bootstrap Carousel controls */
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        filter: invert(60%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(90%);
+        width: 3rem;
+        height: 3rem;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 10%;
+        opacity: 1;
+      }
+
+      .carousel-indicators {
+        bottom: -50px;
+      }
+
+      .carousel-indicators [data-bs-target] {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #4361ee;
+        margin: 0 5px;
+        opacity: 1;
+        border: none;
+      }
+
+      .carousel-indicators .active {
+        background-color: #ffb703;
+      }
+
+      .carousel-container {
+        padding-bottom: 60px; /* Space for indicators */
+      }
+
+      @media (max-width: 992px) {
+        .top-navbar {
+          height: auto;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="top-navbar">
+      <div class="nav-content-wrapper">
+        <div class="nav-left">
+          <img src="assets/img/LOGO-APP-OCEANOS.png" alt="Olaapp Logo" class="nav-logo">
+          <ul class="nav-links">
+            <li><a href="/">Sobre Olaapp</a></li>
+            <li class="active-dark"><a href="colaboran.html">Colaboran</a></li>
+            <li><a href="juguemos.html">Juguemos</a></li>
+            <li class="active-yellow"><a href="#descarga">Descarga Olaapp</a></li>
+            <li><a href="search_FlorayFauna.html">Descubre el mar</a></li>
+          </ul>
+        </div>
+        
+        <div class="nav-right">
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="colaboran-section">
+      <h1 class="colaboran-title" style="font-family: 'Arial Rounded MT Bold', 'Arial Rounded MT', 'Comic Sans MS', cursive, sans-serif !important; font-weight: bold !important;">Colaboran</h1>
+      
+      <div id="colaboradoresCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+
+        </div>
+        
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <img src="equipo/ghislaine.jpg" class="colaborador-img" alt="Ghislaine Barría González">
+            <div class="colaborador-name">Ghislaine Barría González</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>Profesional en Bibliotecología con doble titulación de maestría: una en Bibliotecología e Información y otra en Educación, con especialización en Gestión y Liderazgo. Responsable de la dirección del proyecto y del desarrollo de contenidos para la aplicación OlAapp”<span class="quote-mark"></span>
+            </p>
+          </div>
+          
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img src="equipo/mario_recabal.jpg" class="colaborador-img" alt="Mario Recabal Marambio">
+            <div class="colaborador-name">Mario Recabal Marambio</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>Autor y Diseñador Gráfico Publicitario con Maestría en Comunicación y Periodismo. Responsable de la creación de piezas gráficas, así como de la edición y apoyo en la generación de contenidos para la aplicación OlAapp<span class="quote-mark"></span>
+            </p>
+          </div>
+
+
+
+          <!-- Slide 4 -->
+          <div class="carousel-item">
+            <img src="equipo/Macarena.png" class="colaborador-img" alt="Macarena Herrera Abaroa
+">
+            <div class="colaborador-name">Macarena Herrera Abaroa
+</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>Bióloga Marina que ha orientado su laboren proyectos relacionados principalmente en el área de la Acuicultura. Analista de Zooplancton, con un especial interés en la Ontogenia de bivalvos.OlAapp
+                    <span class="quote-mark"></span>
+            </p>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="carousel-item">
+            <img src="equipo/luis_antipa.jpg" class="colaborador-img" alt="Luis Henríquez-Antipa">
+            <div class="colaborador-name">Luis Henríquez-Antipa</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>
+                    Biólogo Marino y Dr. en Folosofía en Ciencias de la Vida.
+                    Colaborador - Fotografías de recursos<span class="quote-mark"></span>
+            </p>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="carousel-item">
+            <img src="equipo/brayan_burlaz.jpg" class="colaborador-img" alt="Bryan Burlaz Aguirre">
+            <div class="colaborador-name">Bryan Burlaz Aguirre</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>Biólogo Marino y Dr. en Ciencias Biológicas con Mención en Ecología. Colaborador - Fotografías de recursos.<span class="quote-mark"></span>
+            </p>
+          </div>
+
+          <!-- Slide 7 -->
+          <div class="carousel-item">
+            <img src="equipo/felipe_vergara.jpg" class="colaborador-img" alt="Ezequiel Lagos Vasconcellos">
+            <div class="colaborador-name">Felipe Vergara Zárate</div>
+            <p class="colaborador-desc">
+              <span class="quote-mark"></span>“Desarrollador y coordinador principal de la infraestructura tecnológica y el desarrollo de la aplicación OlAapp”.<span class="quote-mark"></span>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(80%) contrast(90%);"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#colaboradoresCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(80%) contrast(90%);"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+
+    <footer id="footer" class="footer">
+      <div class="footer-content position-relative">
+        <div class="container col-8 ">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="footer-info">
+                <h5>OlaApp</h5>
+
+                <p><a href="politica.html">Ver Nuestra Politica</a> <br> <br>
+
+                <h4>Dirección</h4>
+                  Avenida Playa Ancha 850 <br>
+                  Valparaíso, Chile <br> <br>
+                <h4>Contáctanos</h4>
+                  <strong>Phone:</strong> +56 9 7794 3429 <br>
+                  <strong>Email:</strong> olaappchile@gmail.com<br>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal text-center position-relative">
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong><span>OlaApp</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
